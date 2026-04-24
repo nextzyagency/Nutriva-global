@@ -1,0 +1,193 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/sections/Footer.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+import FAQSection from '../../components/sections/FAQSection.astro';
+import products from '../../data/products.json';
+import categoryImg from '../../assets/category_plantbased.png';
+
+const category = products.categories.find(c => c.id === 'plant-based')!;
+---
+
+<Layout
+  title="Productos Plant-Based Globales — Veganos | Nutriva Global"
+  description="Línea completa de productos plant-based: sustitutos de carne, leches vegetales y comidas veganas listas. Certificados Vegan Society. Distribución en +20 países."
+  keywords="productos plant-based globales, sustitutos de carne veganos, leche vegetal orgánica, alimentos plant-based distribución"
+>
+  <Header />
+  <main id="main-content">
+    <section class="cat-hero" aria-label="Productos Plant-Based">
+      <div class="container-xl cat-hero-inner">
+        <div class="cat-hero-content">
+          <p class="section-label gsap-reveal">Plant-Based</p>
+          <h1 class="gsap-reveal">Productos <span class="text-gradient">Plant-Based</span> Globales</h1>
+          <p class="cat-hero-desc gsap-reveal">Sustitutos de carne, leches vegetales y comidas listas 100% veganas. Sin compromisos en sabor ni nutrición, con certificación internacional.</p>
+          <div class="cat-hero-badges gsap-reveal">
+            <span class="badge badge-green">Vegan Society</span>
+            <span class="badge badge-green">Sin Lactosa</span>
+            <span class="badge badge-gold">Sin Gluten</span>
+          </div>
+        </div>
+        <div class="gsap-reveal-right">
+          <Image src={categoryImg} alt="Productos plant-based veganos Nutriva Global" width={580} height={400} loading="eager" class="cat-hero-photo" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" aria-label="Crecimiento mercado plant-based">
+      <div class="container-xl problem-grid">
+        <div class="gsap-reveal-left">
+          <p class="section-label">La Oportunidad</p>
+          <h2>El mercado plant-based crece sin parar</h2>
+          <div class="divider-gold"></div>
+          <p>El mercado global plant-based superará los $74B en 2027. Nutriva Global lidera con formulaciones desarrolladas por nutricionistas, replicando sabores que el consumidor conoce y ama, sin ingredientes animales.</p>
+        </div>
+        <div class="problem-stats gsap-reveal-right">
+          {[
+            { num: '$74B', label: 'mercado plant-based global estimado 2027' },
+            { num: '65%', label: 'de consumidores reduce su consumo de carne' },
+            { num: '3x', label: 'crecimiento anual de leches vegetales en Europa' },
+          ].map(s => (
+            <div class="problem-stat">
+              <div class="pstat-num text-gradient">{s.num}</div>
+              <div class="pstat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-gray-soft" id="productos-plantbased" aria-label="Catálogo plant-based">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
+          <p class="section-label">Catálogo</p>
+          <h2>Nuestra línea plant-based completa</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="products-grid">
+          {category.products.map((p, i) => (
+            <div class="product-card gsap-reveal" data-delay={i * 0.12}>
+              <div class="product-image-wrap">
+                <Image src={categoryImg} alt={p.alt} width={400} height={300} loading="lazy" class="product-img" />
+              </div>
+              <div class="product-body">
+                <h3 class="product-name">{p.name}</h3>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <span class="price-amount">{p.price}</span>
+                    <span class="price-unit">/ {p.unit}</span>
+                  </div>
+                  <a href="/contacto" title={`Pedir ${p.name}`} class="btn-primary product-btn">Pedir</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" aria-label="Beneficios plant-based">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
+          <p class="section-label">Beneficios</p>
+          <h2>Por qué elegir plant-based con Nutriva</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="benefits-grid">
+          {[
+            { icon: '🥗', title: 'Proteína completa', desc: 'Fuentes de alta biodisponibilidad: legumbres, quinoa y soja orgánica certificada.' },
+            { icon: '💚', title: 'Cero ingredientes animales', desc: '100% libre de origen animal. Certificado por Vegan Society Internacional.' },
+            { icon: '🌿', title: 'Sabor sin compromiso', desc: 'Formulados con chefs especializados para replicar texturas y sabores conocidos.' },
+            { icon: '⚡', title: 'Nutricionalmente completo', desc: 'Vitamina B12, hierro y omega-3 incluidos. Nada le falta a tu dieta plant-based.' },
+            { icon: '🌎', title: 'Huella de carbono mínima', desc: 'Plant-based genera 70% menos emisiones que proteína animal.' },
+            { icon: '🔬', title: 'Respaldo científico', desc: 'Formulaciones desarrolladas con nutricionistas y validadas por estudios clínicos.' },
+          ].map((b, i) => (
+            <div class="benefit-card gsap-reveal" data-delay={i * 0.1}>
+              <div class="benefit-icon">{b.icon}</div>
+              <h3>{b.title}</h3>
+              <p>{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-gray-soft" aria-label="Proceso producción plant-based">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
+          <p class="section-label">El Proceso</p>
+          <h2>Cómo creamos plant-based de calidad</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="process-steps">
+          {[
+            { num: '01', title: 'Formulación nutricional', desc: 'Nutricionistas diseñan cada producto para garantizar perfil nutricional completo sin origen animal.' },
+            { num: '02', title: 'Ingredientes certificados', desc: 'Solo plant-based certificados. Legumbres orgánicas, semillas y extractos vegetales verificados.' },
+            { num: '03', title: 'Producción libre de contaminación', desc: 'Líneas de producción 100% libres de contaminación animal. Certificación cruzada verificada.' },
+            { num: '04', title: 'Distribución global segura', desc: 'Cadena de frío garantizada para frescos y refrigerados en toda la red de distribución.' },
+          ].map((step, i) => (
+            <div class="process-step gsap-reveal" data-delay={i * 0.12}>
+              <div class="step-num">{step.num}</div>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+    <FAQSection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.cat-hero { background: linear-gradient(135deg, #f4fbf5 0%, #e8f5e9 100%); padding: calc(72px + 4rem) 0 5rem; }
+.cat-hero-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; }
+.cat-hero-content h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; margin: 0.5rem 0 1rem; }
+.cat-hero-desc { font-size: 1.05rem; margin-bottom: 1.5rem; max-width: 440px; }
+.cat-hero-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.cat-hero-photo { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: auto; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.problem-stats { display: flex; flex-direction: column; gap: 1.25rem; }
+.problem-stat { padding: 1.5rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-md); border-left: 3px solid var(--verde-light); }
+.pstat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 900; margin-bottom: 0.3rem; }
+.pstat-label { font-family: var(--font-heading); font-size: 0.85rem; color: var(--text-muted); }
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.product-card { background: white; border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); }
+.product-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
+.product-image-wrap { aspect-ratio: 4/3; overflow: hidden; background: var(--gray-soft); }
+.product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.product-card:hover .product-img { transform: scale(1.05); }
+.product-body { padding: 1.25rem; }
+.product-name { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-price { display: flex; align-items: baseline; gap: 0.25rem; }
+.price-amount { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; }
+.price-unit { font-size: 0.75rem; color: var(--text-muted); }
+.product-btn { padding: 0.55rem 1.1rem; font-size: 0.82rem; }
+.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.benefit-card { padding: 2rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); transition: all var(--transition); }
+.benefit-card:hover { border-color: rgba(31,122,99,0.25); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.benefit-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.benefit-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+.benefit-card p { font-size: 0.88rem; }
+.process-steps { display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; }
+.process-step { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--gray-mid); }
+.process-step:last-child { border-bottom: none; }
+.step-num { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; color: rgba(31,122,99,0.15); line-height: 1; }
+.process-step h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+.process-step p { font-size: 0.92rem; }
+@media (max-width: 900px) {
+  .cat-hero-inner, .problem-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .products-grid, .benefits-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) { .products-grid, .benefits-grid { grid-template-columns: 1fr; } }
+</style>
+
+

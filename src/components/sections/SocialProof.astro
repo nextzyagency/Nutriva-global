@@ -1,0 +1,275 @@
+---
+const testimonials = [
+  {
+    quote: "Nutriva Global transformó nuestra línea de productos saludables. La calidad es excepcional y la logística internacional es impecable. Nuestros clientes en Europa y LATAM aman los sabores.",
+    author: "María González",
+    role: "Directora de Compras",
+    company: "BioMarket España",
+    rating: 5
+  },
+  {
+    quote: "Distribuimos los superfoods de Nutriva Global en Japón y la respuesta ha sido increíble. Las certificaciones orgánicas y el packaging premium los diferencian completamente del mercado.",
+    author: "Kenji Tanaka",
+    role: "CEO",
+    company: "NaturaShop Japan",
+    rating: 5
+  },
+  {
+    quote: "Llevamos 2 años trabajando con Nutriva como proveedor mayorista. Siempre cumplen los tiempos, la calidad es consistente y el soporte es de primer nivel. Los recomendaría sin dudarlo.",
+    author: "Carlos Medina",
+    role: "Gerente de Operaciones",
+    company: "Salud+, Colombia",
+    rating: 5
+  }
+];
+
+const stats = [
+  { number: '20+', label: 'Países atendidos', sublabel: 'Europa, LATAM, Asia, Norteamérica' },
+  { number: '50k+', label: 'Clientes satisfechos', sublabel: 'Consumidores finales y mayoristas' },
+  { number: '98%', label: 'Satisfacción', sublabel: 'Índice de satisfacción global' },
+  { number: '5', label: 'Certificaciones', sublabel: 'Orgánico, Non-GMO, Vegan y más' },
+];
+---
+
+<section class="social-proof section-pad" id="testimonios" aria-label="Testimonios y prueba social">
+  <div class="container-xl">
+
+    <!-- Stats row -->
+    <div class="sp-stats">
+      {stats.map((stat, i) => (
+        <div class="sp-stat gsap-reveal" data-delay={i * 0.1}>
+          <div class="sp-stat-number text-gradient">{stat.number}</div>
+          <div class="sp-stat-label">{stat.label}</div>
+          <div class="sp-stat-sub">{stat.sublabel}</div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Header -->
+    <div class="sp-header gsap-reveal">
+      <p class="section-label">Prueba Social</p>
+      <h2>Lo que dicen nuestros distribuidores</h2>
+      <div class="divider-gold"></div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testimonials-grid">
+      {testimonials.map((t, i) => (
+        <blockquote class="testimonial-card gsap-reveal" data-delay={i * 0.15} aria-label={`Testimonio de ${t.author}`}>
+          <div class="t-stars" aria-label={`${t.rating} estrellas`}>
+            {Array.from({ length: t.rating }).map(() => (
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            ))}
+          </div>
+          <p class="t-quote">&ldquo;{t.quote}&rdquo;</p>
+          <footer class="t-author">
+            <div class="t-avatar" aria-hidden="true">
+              {t.author.charAt(0)}
+            </div>
+            <div>
+              <cite class="t-name">{t.author}</cite>
+              <div class="t-role">{t.role} &mdash; {t.company}</div>
+            </div>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+
+    <!-- Certifications strip -->
+    <div class="certs-strip gsap-reveal">
+      <p class="certs-title">Certificaciones internacionales</p>
+      <div class="certs-list">
+        {['Organic EU', 'Non-GMO Verified', 'Vegan Society', 'ISO 22000', 'HACCP Certified'].map(cert => (
+          <div class="cert-item">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            {cert}
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.social-proof {
+  background: var(--white);
+}
+
+.sp-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--gray-mid);
+  border: 1px solid var(--gray-mid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-bottom: 5rem;
+}
+
+.sp-stat {
+  background: var(--gray-soft);
+  padding: 2rem;
+  text-align: center;
+  transition: background var(--transition);
+}
+
+.sp-stat:hover { background: white; }
+
+.sp-stat-number {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.sp-stat-label {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--carbon);
+  margin-bottom: 0.2rem;
+}
+
+.sp-stat-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.sp-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.sp-header h2 { margin-bottom: 0.25rem; }
+.sp-header .divider-gold { margin: 1rem auto 0; }
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.testimonial-card {
+  background: var(--gray-soft);
+  border: 1px solid var(--gray-mid);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(31,122,99,0.25);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.t-stars { display: flex; gap: 2px; }
+
+.t-quote {
+  font-size: 0.92rem;
+  color: var(--carbon);
+  line-height: 1.75;
+  flex: 1;
+  font-style: italic;
+}
+
+.t-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-mid);
+}
+
+.t-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--verde-deep);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.t-name {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--carbon);
+  font-style: normal;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.t-role {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.certs-strip {
+  background: var(--verde-deep);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.certs-title {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  white-space: nowrap;
+}
+
+.certs-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: white;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  white-space: nowrap;
+}
+
+.cert-item svg { color: var(--gold); flex-shrink: 0; }
+
+@media (max-width: 900px) {
+  .sp-stats { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .sp-stats { grid-template-columns: 1fr 1fr; }
+  .certs-strip { flex-direction: column; align-items: flex-start; }
+}
+</style>

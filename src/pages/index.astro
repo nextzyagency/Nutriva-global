@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/sections/Hero.astro';
+import TrustBar from '../components/sections/TrustBar.astro';
+import FeaturedProducts from '../components/sections/FeaturedProducts.astro';
+import CategoriesGrid from '../components/sections/CategoriesGrid.astro';
+import SocialProof from '../components/sections/SocialProof.astro';
+import CTASection from '../components/sections/CTASection.astro';
+import FAQSection from '../components/sections/FAQSection.astro';
+import Footer from '../components/sections/Footer.astro';
+---
+
+<Layout
+  title="Alimentos Saludables Globales | Nutriva Global — Snacks Orgánicos Premium"
+  description="Nutriva Global distribuye alimentos saludables, snacks orgánicos premium y superfoods en más de 20 países. Certificados EU Organic. Distribución mayorista internacional disponible."
+  keywords="alimentos saludables globales, snacks orgánicos premium, superfoods distribución internacional, productos plant-based globales"
+>
+  <Header />
+  <main id="main-content">
+    <Hero />
+    <TrustBar />
+    <FeaturedProducts />
+    <CategoriesGrid />
+    <SocialProof />
+    <CTASection />
+    <FAQSection />
+  </main>
+  <Footer />
+</Layout>

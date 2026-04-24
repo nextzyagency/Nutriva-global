@@ -1,0 +1,172 @@
+---
+// TrustBar.astro — Certification & stats bar
+const stats = [
+  { icon: 'globe', label: '+20 Países de distribución' },
+  { icon: 'users', label: '+50,000 Clientes globales' },
+  { icon: 'leaf', label: 'Certificación Organic EU' },
+  { icon: 'shield', label: 'No-GMO Verified' },
+  { icon: 'award', label: 'Vegan Society Certified' },
+  { icon: 'truck', label: 'Logística global eficiente' },
+];
+---
+
+<section class="trust-bar section-pad" aria-label="Certificaciones y estadísticas">
+  <div class="container-xl">
+
+    <div class="trust-bar-header gsap-reveal">
+      <p class="section-label">Confianza Global</p>
+      <h2>Calidad que el mundo reconoce</h2>
+      <div class="divider-gold"></div>
+    </div>
+
+    <div class="trust-grid">
+      {stats.map((stat, i) => (
+        <div class={`trust-card gsap-reveal`} style={`animation-delay: ${i * 0.1}s`}>
+          <div class="trust-card-icon">
+            {stat.icon === 'globe' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            )}
+            {stat.icon === 'users' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            )}
+            {stat.icon === 'leaf' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 4 13c0-6 7-11 7-11s7 5 7 11a7 7 0 0 1-7 7z"/></svg>
+            )}
+            {stat.icon === 'shield' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            )}
+            {stat.icon === 'award' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            )}
+            {stat.icon === 'truck' && (
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            )}
+          </div>
+          <p class="trust-card-label">{stat.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Logos band -->
+    <div class="cert-logos gsap-reveal">
+      <span class="cert-label">Distribuimos en:</span>
+      <div class="cert-flags">
+        {['🇳🇱', '🇩🇪', '🇫🇷', '🇪🇸', '🇺🇸', '🇲🇽', '🇧🇷', '🇨🇴', '🇯🇵', '🇦🇺'].map(flag => (
+          <span class="flag-item">{flag}</span>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.trust-bar {
+  background-color: var(--gray-soft);
+  border-top: 1px solid var(--gray-mid);
+  border-bottom: 1px solid var(--gray-mid);
+}
+
+.trust-bar-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.trust-bar-header h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 0.25rem;
+}
+
+.trust-bar-header .divider-gold {
+  margin: 1rem auto 0;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.trust-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: white;
+  border: 1px solid var(--gray-mid);
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+}
+
+.trust-card:hover {
+  border-color: rgba(31,122,99,0.3);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.trust-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: rgba(31,122,99,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--verde-deep);
+  flex-shrink: 0;
+}
+
+.trust-card-label {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--carbon);
+  line-height: 1.3;
+}
+
+.cert-logos {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem 2rem;
+  background: white;
+  border: 1px solid var(--gray-mid);
+  border-radius: var(--radius-md);
+  flex-wrap: wrap;
+}
+
+.cert-label {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.cert-flags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.flag-item {
+  font-size: 1.4rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.1));
+  transition: transform 0.2s ease;
+}
+
+.flag-item:hover { transform: scale(1.25); }
+
+@media (max-width: 768px) {
+  .trust-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+  .trust-grid { grid-template-columns: 1fr; }
+  .cert-logos { flex-direction: column; align-items: flex-start; }
+}
+</style>

@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────────── */
+:root {
+  --verde-deep:   #1F7A63;
+  --verde-light:  #6BCB77;
+  --beige:        #F5F5DC;
+  --gold:         #D4AF37;
+  --carbon:       #2B2B2B;
+  --white:        #FFFFFF;
+  --gray-soft:    #F8F8F4;
+  --gray-mid:     #E8E8E0;
+  --text-primary: #2B2B2B;
+  --text-muted:   #6B6B5E;
+
+  --font-heading: 'Poppins', sans-serif;
+  --font-body:    'Open Sans', sans-serif;
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+
+  --shadow-sm:  0 1px 3px rgba(31,122,99,0.08);
+  --shadow-md:  0 4px 16px rgba(31,122,99,0.12);
+  --shadow-lg:  0 8px 32px rgba(31,122,99,0.16);
+  --shadow-gold: 0 4px 20px rgba(212,175,55,0.25);
+
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Reset & Base ───────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background-color: var(--white);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--carbon);
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); }
+h4 { font-size: clamp(1rem, 2vw, 1.25rem); }
+
+p {
+  font-family: var(--font-body);
+  color: var(--text-muted);
+  line-height: 1.75;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+}
+
+/* ─── Utility Classes ────────────────────────────────────────────── */
+.container-xl {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 4vw, 3rem);
+}
+
+.section-pad {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+
+.text-gold     { color: var(--gold); }
+.text-green    { color: var(--verde-deep); }
+.text-light-green { color: var(--verde-light); }
+.bg-green-deep { background-color: var(--verde-deep); }
+.bg-beige      { background-color: var(--beige); }
+.bg-gray-soft  { background-color: var(--gray-soft); }
+
+/* ─── Buttons ────────────────────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--verde-deep);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--verde-deep);
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: #175d4b;
+  border-color: #175d4b;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--gold);
+  color: var(--carbon);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--gold);
+  cursor: pointer;
+  transition: all var(--transition);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.btn-gold:hover {
+  background-color: #b8961f;
+  border-color: #b8961f;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--verde-deep);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--verde-deep);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-outline:hover {
+  background-color: var(--verde-deep);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.btn-outline-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius-md);
+  border: 2px solid rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+
+.btn-outline-white:hover {
+  background-color: var(--white);
+  color: var(--verde-deep);
+  border-color: var(--white);
+}
+
+/* ─── Badge ──────────────────────────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 100px;
+}
+
+.badge-green {
+  background-color: rgba(31,122,99,0.1);
+  color: var(--verde-deep);
+}
+
+.badge-gold {
+  background-color: rgba(212,175,55,0.15);
+  color: #9a7d1a;
+}
+
+/* ─── Card ───────────────────────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--gray-mid);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all var(--transition);
+}
+
+.card:hover {
+  border-color: rgba(31,122,99,0.3);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+/* ─── Section Label ──────────────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--verde-deep);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--gold);
+}
+
+/* ─── Divider ────────────────────────────────────────────────────── */
+.divider-gold {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--verde-light));
+  border-radius: 2px;
+  margin: 1rem 0 2rem;
+}
+
+/* ─── Gold Text Gradient ─────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--verde-deep), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── GSAP reveal classes (animations removed — use loading screen instead) ── */
+.gsap-reveal,
+.gsap-reveal-left,
+.gsap-reveal-right {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── FAQ Accordion ──────────────────────────────────────────────── */
+.faq-item {
+  border-bottom: 1px solid var(--gray-mid);
+}
+
+.faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--carbon);
+  text-align: left;
+  gap: 1rem;
+  transition: color var(--transition);
+}
+
+.faq-question:hover { color: var(--verde-deep); }
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--verde-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  color: var(--verde-deep);
+}
+
+.faq-item.open .faq-icon {
+  background-color: var(--verde-deep);
+  color: var(--white);
+  transform: rotate(45deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.faq-answer-inner {
+  padding-bottom: 1.5rem;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 400px;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--beige); }
+::-webkit-scrollbar-thumb { background: var(--verde-deep); border-radius: 3px; }
+
+/* ─── Selection ──────────────────────────────────────────────────── */
+::selection {
+  background-color: var(--verde-deep);
+  color: var(--white);
+}

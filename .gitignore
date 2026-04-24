@@ -1,0 +1,14 @@
+# Nutriva Global — .gitignore
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+!.env.example
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode/
+*.suo
+*.user

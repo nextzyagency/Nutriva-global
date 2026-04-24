@@ -1,0 +1,274 @@
+---
+const navLinks = [
+  { href: '/', label: 'Inicio', title: 'Inicio - Nutriva Global' },
+  { href: '/productos/alimentos-saludables', label: 'Alimentos', title: 'Alimentos Saludables - Nutriva Global' },
+  { href: '/productos/plant-based', label: 'Plant-Based', title: 'Productos Plant-Based - Nutriva Global' },
+  { href: '/productos/superfoods', label: 'Superfoods', title: 'Superfoods - Nutriva Global' },
+  { href: '/productos/linea-global', label: 'Línea Global', title: 'Línea Global - Nutriva Global' },
+  { href: '/nosotros', label: 'Nosotros', title: 'Nosotros - Nutriva Global' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header id="site-header" class="header">
+  <div class="container-xl header-inner">
+
+    <!-- Logo -->
+    <a href="/" title="Nutriva Global - Alimentos Saludables Globales" class="logo-link" id="nav-logo">
+      <div class="logo-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="18" cy="18" r="18" fill="#1F7A63"/>
+          <ellipse cx="18" cy="18" rx="6" ry="12" stroke="#F5F5DC" stroke-width="1.5" fill="none"/>
+          <line x1="6" y1="18" x2="30" y2="18" stroke="#F5F5DC" stroke-width="1.5"/>
+          <path d="M18 8 C22 12 24 16 22 20 C20 24 14 26 18 30" stroke="#D4AF37" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">Nutriva</span>
+        <span class="logo-sub">Global</span>
+      </div>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="nav-desktop" role="navigation" aria-label="Navegación principal">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          title={link.title}
+          class={`nav-link ${currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) ? 'nav-link--active' : ''}`}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Desktop CTA -->
+    <div class="header-actions">
+      <a
+        href="/contacto"
+        title="Contactar a Nutriva Global"
+        class="btn-primary"
+        id="header-cta"
+      >
+        Contactar
+      </a>
+    </div>
+
+    <!-- Mobile burger -->
+    <button class="burger" id="burger-btn" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobile-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Menú de navegación móvil" aria-hidden="true">
+    <nav class="mobile-nav">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          title={link.title}
+          class={`mobile-nav-link ${currentPath === link.href ? 'mobile-nav-link--active' : ''}`}
+        >
+          {link.label}
+        </a>
+      ))}
+      <a href="/contacto" title="Contactar a Nutriva Global" class="btn-primary mobile-cta">Contactar</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(31, 122, 99, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header.scrolled {
+  box-shadow: 0 2px 20px rgba(31, 122, 99, 0.1);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 2rem;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  transition: transform 0.3s ease;
+}
+.logo-link:hover .logo-icon { transform: rotate(-10deg); }
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logo-name {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--verde-deep);
+  letter-spacing: -0.02em;
+}
+
+.logo-sub {
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.nav-desktop {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-link:hover,
+.nav-link--active {
+  color: var(--verde-deep);
+  background-color: rgba(31, 122, 99, 0.07);
+}
+
+.header-actions {
+  flex-shrink: 0;
+}
+
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--carbon);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; }
+.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+  padding: 1rem 0 2rem;
+  border-top: 1px solid var(--gray-mid);
+  background: white;
+}
+
+.mobile-menu.open { display: block; }
+
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0 1.5rem;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 0.85rem 0.75rem;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--gray-mid);
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link--active {
+  color: var(--verde-deep);
+  background-color: rgba(31, 122, 99, 0.05);
+}
+
+.mobile-cta {
+  margin-top: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .nav-desktop, .header-actions { display: none; }
+  .burger { display: flex; }
+}
+</style>
+
+<script>
+  // Scroll effect
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  }, { passive: true });
+
+  // Mobile menu toggle
+  const burger = document.getElementById('burger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  burger?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('open');
+    burger.classList.toggle('open');
+    mobileMenu?.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(!isOpen));
+    mobileMenu?.setAttribute('aria-hidden', String(isOpen));
+  });
+
+  // Close mobile menu on link click
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger?.classList.remove('open');
+      mobileMenu?.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+      mobileMenu?.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>

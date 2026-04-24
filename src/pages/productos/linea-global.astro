@@ -1,0 +1,196 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/sections/Footer.astro';
+import CTASection from '../../components/sections/CTASection.astro';
+import FAQSection from '../../components/sections/FAQSection.astro';
+import products from '../../data/products.json';
+import categoryImg from '../../assets/category_global.png';
+
+const category = products.categories.find(c => c.id === 'linea-global')!;
+---
+
+<Layout
+  title="Alimentos Saludables al por Mayor — Distribución Internacional | Nutriva Global"
+  description="Distribución mayorista de alimentos saludables globales. Productos adaptados a mercados locales con sabores internacionales. Precios especiales para retailers y distribuidores."
+  keywords="alimentos saludables al por mayor, distribución mayorista alimentos, retailers alimentos saludables internacionales, línea global distribución"
+>
+  <Header />
+  <main id="main-content">
+    <section class="cat-hero" aria-label="Línea Global - Alimentos al por Mayor">
+      <div class="container-xl cat-hero-inner">
+        <div class="cat-hero-content">
+          <p class="section-label gsap-reveal">Línea Global</p>
+          <h1 class="gsap-reveal">Alimentos Saludables<br/><span class="text-gradient">al por Mayor</span></h1>
+          <p class="cat-hero-desc gsap-reveal">Productos adaptados a mercados locales con sabores internacionales. Distribución mayorista para retailers, supermercados y distribuidoras en todo el mundo.</p>
+          <div class="cat-hero-badges gsap-reveal">
+            <span class="badge badge-green">+20 Países</span>
+            <span class="badge badge-gold">Mayorista</span>
+            <span class="badge badge-green">Retail Ready</span>
+          </div>
+        </div>
+        <div class="gsap-reveal-right">
+          <Image src={categoryImg} alt="Línea global alimentos saludables distribución mayorista Nutriva Global" width={580} height={400} loading="eager" class="cat-hero-photo" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" aria-label="Oportunidad distribución global">
+      <div class="container-xl problem-grid">
+        <div class="gsap-reveal-left">
+          <p class="section-label">La Oportunidad</p>
+          <h2>Un mercado global que busca calidad local</h2>
+          <div class="divider-gold"></div>
+          <p>Los consumidores en Asia, Europa y LATAM quieren alimentos saludables adaptados a sus gustos culturales, pero con estándares de calidad internacionales. Nutriva Global desarrolla formulaciones localizadas manteniendo las certificaciones que los mercados exigentes requieren.</p>
+        </div>
+        <div class="problem-stats gsap-reveal-right">
+          {[
+            { num: '$1.2T', label: 'mercado global de alimentos funcionales y saludables' },
+            { num: '20+', label: 'países con distribución activa de Nutriva Global' },
+            { num: '4', label: 'continentes con presencia comercial directa' },
+          ].map(s => (
+            <div class="problem-stat">
+              <div class="pstat-num text-gradient">{s.num}</div>
+              <div class="pstat-label">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-gray-soft" id="productos-global" aria-label="Catálogo línea global">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
+          <p class="section-label">Catálogo Global</p>
+          <h2>Sabores del mundo, calidad certificada</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="products-grid">
+          {category.products.map((p, i) => (
+            <div class="product-card gsap-reveal" data-delay={i * 0.12}>
+              <div class="product-image-wrap">
+                <Image src={categoryImg} alt={p.alt} width={400} height={300} loading="lazy" class="product-img" />
+              </div>
+              <div class="product-body">
+                <h3 class="product-name">{p.name}</h3>
+                <div class="product-footer">
+                  <div class="product-price">
+                    <span class="price-amount">{p.price}</span>
+                    <span class="price-unit">/ {p.unit}</span>
+                  </div>
+                  <a href="/contacto" title={`Pedir ${p.name} mayorista`} class="btn-primary product-btn">Cotizar</a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" aria-label="Beneficios distribución mayorista">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
+          <p class="section-label">Ventajas Mayoristas</p>
+          <h2>Por qué los distribuidores eligen Nutriva Global</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="benefits-grid">
+          {[
+            { icon: '💼', title: 'Mínimos flexibles', desc: 'Mínimos de pedido adaptados a distribuidores medianos y grandes cadenas. Crecemos juntos desde el primer pedido.' },
+            { icon: '📊', title: 'Márgenes competitivos', desc: 'Precios mayoristas que garantizan márgenes atractivos para retailers y distribuidoras internacionales.' },
+            { icon: '🗺️', title: 'Exclusividad territorial', desc: 'Posibilidad de acuerdos de distribución exclusiva por zona geográfica para distribuidores con volumen.' },
+            { icon: '🎨', title: 'Private Label', desc: 'Desarrollamos líneas con tu marca. Formulación, certificación y packaging bajo tu identidad visual.' },
+            { icon: '📋', title: 'Documentación completa', desc: 'Certificados de origen, análisis de laboratorio, fichas técnicas y declaraciones nutricionales en varios idiomas.' },
+            { icon: '🤝', title: 'Soporte comercial', desc: 'Ejecutivo de cuenta dedicado, materiales de marketing y soporte para lanzamiento en tu mercado.' },
+          ].map((b, i) => (
+            <div class="benefit-card gsap-reveal" data-delay={i * 0.1}>
+              <div class="benefit-icon">{b.icon}</div>
+              <h3>{b.title}</h3>
+              <p>{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad bg-gray-soft" aria-label="Proceso de distribución mayorista">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
+          <p class="section-label">El Proceso</p>
+          <h2>Cómo trabajamos con distribuidores</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="process-steps">
+          {[
+            { num: '01', title: 'Contacto inicial', desc: 'Completa el formulario de contacto mayorista. Un asesor te responderá en menos de 24 horas hábiles.' },
+            { num: '02', title: 'Propuesta personalizada', desc: 'Analizamos tu mercado, volúmenes y necesidades. Diseñamos una propuesta comercial a tu medida.' },
+            { num: '03', title: 'Muestras y validación', desc: 'Enviamos muestras físicas de los productos seleccionados para tu evaluación. Sin costo para distribuidores calificados.' },
+            { num: '04', title: 'Primer pedido y logística', desc: 'Definimos incoterms, documentación aduanera y coordinamos el despacho a tu país con nuestra red logística.' },
+            { num: '05', title: 'Soporte continuo', desc: 'Ejecutivo de cuenta dedicado, acceso a materiales de merchandising y reportes de trazabilidad de cada lote.' },
+          ].map((step, i) => (
+            <div class="process-step gsap-reveal" data-delay={i * 0.1}>
+              <div class="step-num">{step.num}</div>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+    <FAQSection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.cat-hero { background: linear-gradient(135deg, var(--carbon) 0%, #1a2820 100%); padding: calc(72px + 4rem) 0 5rem; }
+.cat-hero-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; }
+.cat-hero-content h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; margin: 0.5rem 0 1rem; color: white; }
+.cat-hero-content .section-label { color: var(--gold); }
+.cat-hero-content .section-label::before { background-color: var(--gold); }
+.cat-hero-desc { font-size: 1.05rem; margin-bottom: 1.5rem; max-width: 440px; color: rgba(255,255,255,0.7); }
+.cat-hero-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.cat-hero-photo { border-radius: var(--radius-lg); box-shadow: 0 24px 80px rgba(0,0,0,0.5); width: 100%; height: auto; }
+.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.problem-stats { display: flex; flex-direction: column; gap: 1.25rem; }
+.problem-stat { padding: 1.5rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-md); border-left: 3px solid var(--carbon); }
+.pstat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 900; margin-bottom: 0.3rem; }
+.pstat-label { font-family: var(--font-heading); font-size: 0.85rem; color: var(--text-muted); }
+.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.product-card { background: white; border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); overflow: hidden; transition: all var(--transition); }
+.product-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
+.product-image-wrap { aspect-ratio: 4/3; overflow: hidden; background: var(--gray-soft); }
+.product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.product-card:hover .product-img { transform: scale(1.05); }
+.product-body { padding: 1.25rem; }
+.product-name { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+.product-footer { display: flex; align-items: center; justify-content: space-between; }
+.product-price { display: flex; align-items: baseline; gap: 0.25rem; }
+.price-amount { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; }
+.price-unit { font-size: 0.75rem; color: var(--text-muted); }
+.product-btn { padding: 0.55rem 1.1rem; font-size: 0.82rem; }
+.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.benefit-card { padding: 2rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); transition: all var(--transition); }
+.benefit-card:hover { border-color: rgba(43,43,43,0.2); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.benefit-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.benefit-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+.benefit-card p { font-size: 0.88rem; }
+.process-steps { display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; }
+.process-step { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--gray-mid); }
+.process-step:last-child { border-bottom: none; }
+.step-num { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; color: rgba(43,43,43,0.12); line-height: 1; }
+.process-step h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+.process-step p { font-size: 0.92rem; }
+@media (max-width: 900px) {
+  .cat-hero-inner, .problem-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .products-grid, .benefits-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 560px) { .products-grid, .benefits-grid { grid-template-columns: 1fr; } }
+</style>
+
+

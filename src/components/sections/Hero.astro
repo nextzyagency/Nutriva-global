@@ -1,0 +1,321 @@
+---
+import { Image } from 'astro:assets';
+import heroImg from '../../assets/hero_nutriva.png';
+---
+
+<section class="hero" id="hero" aria-label="Sección principal">
+  <div class="hero-bg-shape" aria-hidden="true"></div>
+  <div class="hero-bg-dots" aria-hidden="true"></div>
+
+  <div class="container-xl hero-inner">
+
+    <!-- Left content -->
+    <div class="hero-content">
+      <div class="section-label gsap-reveal" id="hero-label">
+        Distribución Internacional
+      </div>
+
+      <h1 class="hero-h1 gsap-reveal" id="hero-h1">
+        Alimentos Saludables<br/>
+        <span class="text-gradient">Globales</span> que<br/>
+        Transforman Vidas
+      </h1>
+
+      <p class="hero-subtitle gsap-reveal" id="hero-subtitle">
+        Snacks orgánicos premium, superfoods y productos plant-based distribuidos en más de 20 países. Calidad certificada, sabor real, impacto positivo en tu salud y el planeta.
+      </p>
+
+      <div class="hero-actions gsap-reveal" id="hero-actions">
+        <a
+          href="/productos/alimentos-saludables"
+          title="Ver todos los productos de Nutriva Global"
+          class="btn-gold"
+          id="hero-cta-primary"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Explorar Productos
+        </a>
+        <a
+          href="/contacto#mayoristas"
+          title="Información para distribuidores mayoristas"
+          class="btn-outline"
+          id="hero-cta-secondary"
+        >
+          Soy Distribuidor
+        </a>
+      </div>
+
+      <div class="hero-trust gsap-reveal" id="hero-trust">
+        <div class="trust-item">
+          <span class="trust-number" data-count="20">0</span><span class="trust-plus">+</span>
+          <span class="trust-label">Países</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-item">
+          <span class="trust-number" data-count="50">0</span><span class="trust-plus">k+</span>
+          <span class="trust-label">Clientes</span>
+        </div>
+        <div class="trust-divider" aria-hidden="true"></div>
+        <div class="trust-item">
+          <span class="trust-number" data-count="100">0</span><span class="trust-plus">%</span>
+          <span class="trust-label">Orgánico</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right image -->
+    <div class="hero-image-wrap gsap-reveal-right" id="hero-image">
+      <div class="hero-image-frame">
+        <Image
+          src={heroImg}
+          alt="Alimentos saludables globales Nutriva Global — productos orgánicos premium"
+          width={680}
+          height={520}
+          loading="eager"
+          class="hero-img"
+        />
+        <div class="hero-badge-floating" aria-hidden="true">
+          <div class="hbf-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div>
+            <div class="hbf-title">Certificado Orgánico</div>
+            <div class="hbf-sub">EU Organic Standard</div>
+          </div>
+        </div>
+        <div class="hero-badge-floating hero-badge-float-2" aria-hidden="true">
+          <div class="hbf-icon hbf-gold">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <div class="hbf-title">Envío Global</div>
+            <div class="hbf-sub">+20 países</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 72px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f9fbf9 0%, var(--beige) 50%, #f0f4f0 100%);
+}
+
+.hero-bg-shape {
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 70vw;
+  height: 70vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(31,122,99,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-bg-dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(31,122,99,0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  padding-top: clamp(3rem, 6vw, 5rem);
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-h1 {
+  font-size: clamp(2.4rem, 5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--carbon);
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.hero-trust {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
+  background: white;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-mid);
+  box-shadow: var(--shadow-sm);
+  width: fit-content;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.trust-number {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--verde-deep);
+  line-height: 1;
+}
+
+.trust-plus {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--gold);
+  line-height: 1;
+}
+
+/* Layout hack: number + plus inline */
+.trust-item:first-child,
+.trust-item:nth-child(3),
+.trust-item:nth-child(5) {
+  position: relative;
+}
+
+.trust-number, .trust-plus {
+  display: inline;
+}
+
+.trust-label {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.trust-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--gray-mid);
+}
+
+/* Image side */
+.hero-image-wrap {
+  position: relative;
+}
+
+.hero-image-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(31,122,99,0.2);
+}
+
+.hero-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-badge-floating {
+  position: absolute;
+  bottom: 2rem;
+  left: -1.5rem;
+  background: white;
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  min-width: 200px;
+}
+
+.hero-badge-float-2 {
+  bottom: auto;
+  top: 2rem;
+  left: auto;
+  right: -1.5rem;
+}
+
+.hbf-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(31,122,99,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--verde-deep);
+  flex-shrink: 0;
+}
+
+.hbf-gold {
+  background: rgba(212,175,55,0.1);
+  color: var(--gold);
+}
+
+.hbf-title {
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--carbon);
+}
+
+.hbf-sub {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero-content { max-width: 100%; margin: 0 auto; }
+  .section-label { justify-content: center; }
+  .hero-actions { justify-content: center; }
+  .hero-trust { margin: 0 auto; }
+  .hero-badge-floating { display: none; }
+  .hero-image-wrap { order: -1; }
+}
+
+@media (max-width: 480px) {
+  .hero-trust { gap: 1rem; padding: 1rem 1.25rem; }
+  .trust-number { font-size: 1.4rem; }
+}
+</style>

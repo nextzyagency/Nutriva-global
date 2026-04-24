@@ -1,0 +1,100 @@
+{
+  "featured": [
+    {
+      "id": "snack-organico-mix",
+      "name": "Snack Orgánico Mix",
+      "category": "Alimentos Saludables",
+      "categorySlug": "alimentos-saludables",
+      "badge": "Más Vendido",
+      "description": "Mezcla de frutos secos, semillas y frutas deshidratadas 100% orgánicas. Sin azúcar añadida, sin conservantes artificiales.",
+      "price": "€12.90",
+      "unit": "250g",
+      "image": "product_snack",
+      "alt": "Snack orgánico mix de frutos secos y semillas Nutriva Global",
+      "benefits": ["100% orgánico", "Sin gluten", "Fuente de energía natural"],
+      "certifications": ["Organic EU", "Non-GMO"]
+    },
+    {
+      "id": "barra-proteica-quinoa",
+      "name": "Barra Proteica de Quinoa",
+      "category": "Alimentos Saludables",
+      "categorySlug": "alimentos-saludables",
+      "badge": "Top Ventas",
+      "description": "Barra proteica con base de quinoa real, 15g de proteína por barra. Plant-based, sin gluten y perfecta para deportistas.",
+      "price": "€3.50",
+      "unit": "60g / unidad",
+      "image": "product_barra",
+      "alt": "Barra proteica de quinoa plant-based Nutriva Global",
+      "benefits": ["15g de proteína", "Plant-based", "Sin gluten"],
+      "certifications": ["Vegan Society", "Organic EU"]
+    },
+    {
+      "id": "granola-premium",
+      "name": "Granola Premium Artesanal",
+      "category": "Alimentos Saludables",
+      "categorySlug": "alimentos-saludables",
+      "badge": "Nuevo",
+      "description": "Granola artesanal con avena integral, miel de agave, nueces y arándanos. Sin azúcares refinados, perfecta para el desayuno.",
+      "price": "€9.90",
+      "unit": "400g",
+      "image": "product_granola",
+      "alt": "Granola premium artesanal con avena y arándanos Nutriva Global",
+      "benefits": ["Sin azúcar refinada", "Rica en fibra", "Elaboración artesanal"],
+      "certifications": ["Organic EU", "Non-GMO"]
+    }
+  ],
+  "categories": [
+    {
+      "id": "alimentos-saludables",
+      "name": "Alimentos Saludables",
+      "description": "Snacks orgánicos, barras proteicas y granolas artesanales para tu día a día.",
+      "image": "category_alimentos",
+      "alt": "Categoría alimentos saludables - snacks orgánicos y granolas Nutriva Global",
+      "color": "#1F7A63",
+      "products": [
+        { "id": "snack-organico-mix", "name": "Snack Orgánico Mix", "price": "€12.90", "unit": "250g", "image": "product_snack", "alt": "Snack orgánico mix Nutriva Global" },
+        { "id": "barra-proteica-quinoa", "name": "Barra Proteica Quinoa", "price": "€3.50", "unit": "60g", "image": "product_barra", "alt": "Barra proteica quinoa Nutriva Global" },
+        { "id": "granola-premium", "name": "Granola Premium", "price": "€9.90", "unit": "400g", "image": "product_granola", "alt": "Granola premium artesanal Nutriva Global" }
+      ]
+    },
+    {
+      "id": "plant-based",
+      "name": "Plant-Based",
+      "description": "Sustitutos de carne, leches vegetales y comidas listas 100% veganas.",
+      "image": "category_plantbased",
+      "alt": "Categoría plant-based - productos veganos y leches vegetales Nutriva Global",
+      "color": "#6BCB77",
+      "products": [
+        { "id": "leche-avena", "name": "Leche de Avena Bio", "price": "€2.80", "unit": "1L", "image": "category_plantbased", "alt": "Leche de avena orgánica Nutriva Global" },
+        { "id": "sustituto-carne", "name": "Sustituto de Carne Plant", "price": "€6.90", "unit": "200g", "image": "category_plantbased", "alt": "Sustituto de carne plant-based Nutriva Global" },
+        { "id": "comida-lista-vegan", "name": "Comida Lista Vegana", "price": "€4.50", "unit": "350g", "image": "category_plantbased", "alt": "Comida lista vegana Nutriva Global" }
+      ]
+    },
+    {
+      "id": "superfoods",
+      "name": "Superfoods",
+      "description": "Proteínas en polvo, semillas de chía, linaza, quinoa y suplementos naturales.",
+      "image": "category_superfoods",
+      "alt": "Categoría superfoods - semillas y proteínas naturales Nutriva Global",
+      "color": "#D4AF37",
+      "products": [
+        { "id": "chia-organica", "name": "Chía Orgánica", "price": "€7.50", "unit": "500g", "image": "category_superfoods", "alt": "Semillas de chía orgánica Nutriva Global" },
+        { "id": "quinoa-real", "name": "Quinoa Real Premium", "price": "€8.90", "unit": "500g", "image": "category_superfoods", "alt": "Quinoa real premium Nutriva Global" },
+        { "id": "proteina-vegetal", "name": "Proteína Vegetal", "price": "€29.90", "unit": "500g", "image": "category_superfoods", "alt": "Proteína vegetal en polvo Nutriva Global" }
+      ]
+    },
+    {
+      "id": "linea-global",
+      "name": "Línea Global",
+      "description": "Sabores internacionales y productos adaptados a cada mercado del mundo.",
+      "image": "category_global",
+      "alt": "Categoría línea global - productos internacionales Nutriva Global",
+      "color": "#2B2B2B",
+      "products": [
+        { "id": "snack-asia", "name": "Snack Edición Asia", "price": "€14.90", "unit": "250g", "image": "category_global", "alt": "Snack edición Asia Nutriva Global" },
+        { "id": "snack-latam", "name": "Snack Edición LATAM", "price": "€13.90", "unit": "250g", "image": "category_global", "alt": "Snack edición Latinoamérica Nutriva Global" },
+        { "id": "mix-global", "name": "Mix Global Premium", "price": "€19.90", "unit": "500g", "image": "category_global", "alt": "Mix global premium Nutriva Global" }
+      ]
+    }
+  ]
+}

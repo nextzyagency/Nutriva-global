@@ -1,0 +1,214 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/sections/Footer.astro';
+import CTASection from '../components/sections/CTASection.astro';
+import aboutImg from '../assets/about_team.png';
+---
+
+<Layout
+  title="Sobre Nosotros — Nutriva Global | Alimentos Saludables con Propósito"
+  description="Conoce Nutriva Global, empresa internacional de alimentos saludables fundada en Ámsterdam. Nuestra misión: nutrición accesible, sostenible y de calidad certificada para el mundo."
+  keywords="Nutriva Global empresa, alimentos saludables Ámsterdam, empresa alimentación consciente global, distribución alimentos orgánicos internacional"
+>
+  <Header />
+  <main id="main-content">
+
+    <!-- POSICIONAMIENTO HERO -->
+    <section class="about-hero" aria-label="Quiénes somos">
+      <div class="container-xl about-hero-inner">
+        <div class="about-hero-content">
+          <p class="section-label gsap-reveal">Sobre Nosotros</p>
+          <h1 class="gsap-reveal">Nutriendo el mundo,<br/><span class="text-gradient">naturalmente.</span></h1>
+          <p class="about-hero-desc gsap-reveal">Somos una empresa internacional de alimentos saludables, sostenibles y accesibles. Desde Ámsterdam, distribuimos productos certificados a más de 20 países para consumidores que exigen calidad, transparencia y compromiso con el planeta.</p>
+          <div class="about-hero-stats gsap-reveal">
+            <div class="astat"><span class="astat-num text-gradient">2018</span><span class="astat-label">Fundada</span></div>
+            <div class="astat-divider"></div>
+            <div class="astat"><span class="astat-num text-gradient">20+</span><span class="astat-label">Países</span></div>
+            <div class="astat-divider"></div>
+            <div class="astat"><span class="astat-num text-gradient">50k+</span><span class="astat-label">Clientes</span></div>
+          </div>
+        </div>
+        <div class="gsap-reveal-right">
+          <Image src={aboutImg} alt="Equipo Nutriva Global Ámsterdam — empresa alimentos saludables internacionales" width={600} height={440} loading="eager" class="about-hero-img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORIA -->
+    <section class="section-pad" aria-label="Historia de Nutriva Global">
+      <div class="container-xl about-story">
+        <div class="gsap-reveal-left">
+          <p class="section-label">Nuestra Historia</p>
+          <h2>Nacimos para resolver un problema real</h2>
+          <div class="divider-gold"></div>
+          <p>En 2018, un grupo de nutricionistas, empresarios de alimentos y expertos en distribución internacional identificaron un vacío crítico: el mercado global de alimentos saludables estaba fragmentado, lleno de productos de dudosa calidad y sin trazabilidad verificable.</p>
+          <p style="margin-top:1rem;">Los consumidores conscientes de Europa y LATAM querían opciones reales, orgánicas y certificadas, pero accesibles. Los distribuidores buscaban un proveedor confiable con capacidad global real.</p>
+          <p style="margin-top:1rem;">Nutriva Global nació en Ámsterdam como respuesta directa a ese mercado desatendido. Hoy, distribuimos en 4 continentes con el mismo compromiso de calidad del primer día.</p>
+        </div>
+        <div class="story-timeline gsap-reveal-right">
+          {[
+            { year: '2018', event: 'Fundación en Ámsterdam. Primeros 3 productos, distribución local en Países Bajos.' },
+            { year: '2019', event: 'Expansión a Alemania, Francia y España. Certificación EU Organic obtenida.' },
+            { year: '2020', event: 'Entrada a LATAM: Colombia, México y Brasil. Línea plant-based lanzada.' },
+            { year: '2022', event: 'Expansión Asia: Japón y Corea del Sur. Certificación Non-GMO Verified global.' },
+            { year: '2024', event: '+20 países activos, +50k clientes. Línea superfoods con quinoa andina certificada.' },
+          ].map(item => (
+            <div class="timeline-item">
+              <div class="timeline-year">{item.year}</div>
+              <div class="timeline-event">{item.event}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- MISIÓN Y VISIÓN -->
+    <section class="section-pad bg-gray-soft" aria-label="Misión y visión">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3.5rem;">
+          <p class="section-label">Nuestro Propósito</p>
+          <h2>Misión, Visión y Valores</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="mv-grid">
+          <div class="mv-card gsap-reveal" data-delay="0">
+            <div class="mv-icon">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            </div>
+            <h3>Misión</h3>
+            <p>Proporcionar alimentos saludables, accesibles y de alta calidad a nivel global, promoviendo un estilo de vida equilibrado mientras impulsamos prácticas sostenibles en toda la cadena de producción.</p>
+          </div>
+          <div class="mv-card gsap-reveal" data-delay="0.1">
+            <div class="mv-icon mv-icon-gold">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4-7 4z"/><path d="M8 2v16"/><path d="M16 6v16"/></svg>
+            </div>
+            <h3>Visión</h3>
+            <p>Convertirnos en la marca líder mundial en alimentación consciente, impactando positivamente la salud de millones de personas y contribuyendo al cuidado del planeta a través de cada producto.</p>
+          </div>
+          <div class="mv-card gsap-reveal" data-delay="0.2">
+            <div class="mv-icon mv-icon-light">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3>Valores</h3>
+            <p>Calidad sin compromisos, transparencia total, sostenibilidad real y accesibilidad global. No competimos por precio bajo; competimos por valor, confianza y diferenciación genuina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIFERENCIADOR -->
+    <section class="section-pad" aria-label="Diferenciadores Nutriva Global">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3.5rem;">
+          <p class="section-label">Por Qué Elegirnos</p>
+          <h2>Lo que nos hace genuinamente distintos</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="diff-grid">
+          {[
+            { num: '01', title: 'Trazabilidad real', desc: 'Cada producto tiene código QR vinculado al lote, productor y análisis de laboratorio independiente. Transparencia que el mercado no da.' },
+            { num: '02', title: 'Red propia de productores', desc: 'No somos intermediarios. Trabajamos directamente con 47 productores certificados en 12 países. Precios justos y calidad garantizada.' },
+            { num: '03', title: 'Formulación científica', desc: 'Nuestro equipo de nutricionistas y food scientists diseña cada producto para maximizar biodisponibilidad de nutrientes.' },
+            { num: '04', title: 'Logística global propia', desc: 'Red de distribución internacional directa. Sin operadores externos. Control total de tiempo, temperatura y trazabilidad de envío.' },
+          ].map((d, i) => (
+            <div class="diff-card gsap-reveal" data-delay={i * 0.12}>
+              <div class="diff-num">{d.num}</div>
+              <h3>{d.title}</h3>
+              <p>{d.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRUEBA -->
+    <section class="section-pad bg-green-deep" aria-label="Resultados Nutriva Global">
+      <div class="container-xl">
+        <div class="gsap-reveal" style="text-align:center; margin-bottom:3.5rem;">
+          <p class="section-label" style="color:var(--gold);">Resultados</p>
+          <h2 style="color:white;">Números que respaldan nuestras palabras</h2>
+          <div class="divider-gold" style="margin:1rem auto 0;"></div>
+        </div>
+        <div class="results-grid">
+          {[
+            { num: '20+', label: 'Países con distribución activa', sub: 'Europa, LATAM, Asia, Norteamérica' },
+            { num: '50k+', label: 'Clientes satisfechos', sub: 'Consumidores y distribuidores' },
+            { num: '98%', label: 'Tasa de satisfacción', sub: 'Encuesta a distribuidores 2024' },
+            { num: '5', label: 'Certificaciones internacionales', sub: 'Organic EU, Non-GMO, Vegan y más' },
+            { num: '47', label: 'Productores certificados', sub: 'Red propia en 12 países' },
+            { num: '6', label: 'Años de trayectoria', sub: 'Desde 2018 hasta hoy' },
+          ].map((r, i) => (
+            <div class="result-item gsap-reveal" data-delay={i * 0.1}>
+              <div class="result-num">{r.num}</div>
+              <div class="result-label">{r.label}</div>
+              <div class="result-sub">{r.sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <CTASection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.about-hero { background: linear-gradient(135deg, #f9fbf9 0%, var(--beige) 100%); padding: calc(72px + 4rem) 0 5rem; }
+.about-hero-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; }
+.about-hero-content h1 { font-size: clamp(2.4rem, 4.5vw, 3.8rem); font-weight: 900; margin: 0.5rem 0 1.25rem; }
+.about-hero-desc { font-size: 1.05rem; margin-bottom: 2rem; max-width: 480px; }
+.about-hero-stats { display: flex; align-items: center; gap: 2rem; padding: 1.5rem 2rem; background: white; border-radius: var(--radius-lg); border: 1px solid var(--gray-mid); width: fit-content; }
+.astat { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; }
+.astat-num { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 900; line-height: 1; }
+.astat-label { font-family: var(--font-heading); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.astat-divider { width: 1px; height: 40px; background: var(--gray-mid); }
+.about-hero-img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: auto; }
+
+.about-story { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+.about-story p { margin-top: 0.5rem; }
+
+.story-timeline { display: flex; flex-direction: column; gap: 0; }
+.timeline-item { display: grid; grid-template-columns: 60px 1fr; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--gray-mid); }
+.timeline-item:last-child { border-bottom: none; }
+.timeline-year { font-family: var(--font-heading); font-size: 0.85rem; font-weight: 800; color: var(--verde-deep); line-height: 1.6; }
+.timeline-event { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+.mv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.mv-card { padding: 2.5rem 2rem; background: white; border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); transition: all var(--transition); }
+.mv-card:hover { border-color: rgba(31,122,99,0.25); box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.mv-icon { width: 52px; height: 52px; border-radius: 12px; background: rgba(31,122,99,0.1); display: flex; align-items: center; justify-content: center; color: var(--verde-deep); margin-bottom: 1.25rem; }
+.mv-icon-gold { background: rgba(212,175,55,0.1); color: var(--gold); }
+.mv-icon-light { background: rgba(107,203,119,0.1); color: var(--verde-light); }
+.mv-card h3 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+.mv-card p { font-size: 0.9rem; }
+
+.diff-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+.diff-card { padding: 2.5rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); transition: all var(--transition); }
+.diff-card:hover { border-color: rgba(31,122,99,0.25); box-shadow: var(--shadow-md); }
+.diff-num { font-family: var(--font-heading); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 0.75rem; }
+.diff-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.diff-card p { font-size: 0.9rem; }
+
+.results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); overflow: hidden; }
+.result-item { padding: 2.5rem; background: rgba(255,255,255,0.05); text-align: center; transition: background var(--transition); }
+.result-item:hover { background: rgba(255,255,255,0.1); }
+.result-num { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 0.35rem; }
+.result-label { font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: white; margin-bottom: 0.2rem; }
+.result-sub { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+
+@media (max-width: 900px) {
+  .about-hero-inner, .about-story { grid-template-columns: 1fr; gap: 2.5rem; }
+  .mv-grid { grid-template-columns: 1fr; }
+  .diff-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .results-grid { grid-template-columns: 1fr; }
+  .about-hero-stats { gap: 1.25rem; padding: 1rem 1.25rem; }
+}
+</style>
+
+
