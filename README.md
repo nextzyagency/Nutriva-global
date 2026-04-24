@@ -1,43 +1,45 @@
-# Astro Starter Kit: Minimal
+# Nutriva Global — E-commerce de Alimentos Saludables
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Nutriva Global es una plataforma e-commerce premium construida con **Astro**, **Tailwind CSS** y **GSAP**, diseñada para la distribución internacional de alimentos saludables, orgánicos y sostenibles.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🚀 Tecnologías
 
-## 🚀 Project Structure
+- **Framework:** Astro 6.0+
+- **Estilos:** Tailwind CSS (Vite Plugin)
+- **Animaciones:** GSAP (Pantalla de carga premium)
+- **Despliegue:** Optimizado para Cloudflare Pages
+- **SEO:** Metadatos dinámicos, JSON-LD estructurado, Robots.txt y Sitemap.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📦 Estructura del Proyecto
 
 ```text
-/
-├── public/
+Nutriva-global/
+├── public/              # Assets estáticos y configuraciones de Cloudflare
+│   ├── _headers         # Cabeceras de seguridad y caché para Cloudflare
+│   └── robots.txt       # Optimización para buscadores
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/          # Imágenes optimizadas vía astro:assets
+│   ├── components/      # Componentes UI y Secciones
+│   ├── data/            # Fuente de verdad de productos (JSON)
+│   ├── layouts/         # Plantilla base con SEO y Loading Screen
+│   ├── pages/           # Rutas del sitio (Home, Categorías, Nosotros, Contacto)
+│   └── styles/          # Estilos globales y tokens de diseño
+└── astro.config.mjs     # Configuración de Astro y Vite
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🛠️ Características Principales
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+1. **Pantalla de Carga Premium:** Una experiencia de entrada fluida que asegura que todos los recursos visuales estén listos antes de mostrar el sitio.
+2. **Arquitectura de Datos:** Los productos se gestionan desde `src/data/products.json`, facilitando actualizaciones de catálogo sin tocar código.
+3. **Optimización de Imágenes:** Uso de `astro:assets` para conversión automática a WebP y Lazy Loading.
+4. **SEO de Alto Rendimiento:** Jerarquía de encabezados (H1-H3) estricta, etiquetas `alt` en todas las imágenes y Schema.org integrado para visibilidad en Google.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 🚀 Despliegue en Cloudflare Pages
 
-## 🧞 Commands
+El proyecto incluye un archivo `public/_headers` configurado para:
+- Cabeceras de seguridad (X-Frame-Options, HSTS, etc.).
+- Caché agresiva para assets inmutables (1 año).
+- Rendimiento optimizado en el Edge.
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+Desarrollado por **Antigravity** — Ingeniero Frontend Senior.
