@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T18:10:00Z",
+  "title": "Design System: Nutriva Global",
+  "extensions": {
+    "colorMeta": {
+      "forest-ink": { "role": "neutral", "displayName": "Forest Ink" },
+      "leaf-green": { "role": "primary", "displayName": "Leaf Green" },
+      "oat": { "role": "neutral", "displayName": "Oat Paper" },
+      "field-oat": { "role": "tertiary", "displayName": "Oat Field (Alimentos Saludables)" },
+      "field-sage": { "role": "tertiary", "displayName": "Sage Field (Plant-Based)" },
+      "field-apricot": { "role": "tertiary", "displayName": "Apricot Field (Superfoods)" },
+      "field-sky": { "role": "tertiary", "displayName": "Sky Field (Línea Global)" },
+      "apricot-ink": { "role": "secondary", "displayName": "Apricot Ink (example notes only)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page H1s and the CTA band headline." },
+      "headline": { "displayName": "Headline", "purpose": "Section H2s." },
+      "title": { "displayName": "Title", "purpose": "Product names, steps, FAQ questions, fact titles." },
+      "lede": { "displayName": "Lede", "purpose": "Intro paragraph under H1 and section heads." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "All transitions and the entrance reveal." },
+      { "name": "reveal-img", "value": "1100ms clip-path inset reveal", "purpose": "Hero photograph entrance, once per page; disabled under reduced motion." },
+      { "name": "reveal-up", "value": "800ms 14px rise, staggered 80ms", "purpose": "Hero copy entrance only." }
+    ],
+    "breakpoints": [
+      { "name": "nav", "value": "1140px" },
+      { "name": "lg", "value": "960px" },
+      { "name": "md", "value": "860px" },
+      { "name": "sm", "value": "600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Every action: request a proposal, order, send.",
+      "html": "<button class=\"ds-btn-primary\">Solicitar propuesta <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></button>",
+      "css": ".ds-btn-primary { display:inline-flex; align-items:center; gap:.5rem; min-height:48px; padding:12px 24px; border:0; border-radius:999px; background:#2F7A4E; color:#fff; font:700 1rem 'Hanken Grotesk', sans-serif; cursor:pointer; transition:background-color 180ms cubic-bezier(.16,1,.3,1); } .ds-btn-primary:hover { background:#24613D; } .ds-btn-primary:focus-visible { outline:3px solid #2F7A4E; outline-offset:3px; }"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary action next to a primary one.",
+      "html": "<button class=\"ds-btn-ghost\">Ver productos</button>",
+      "css": ".ds-btn-ghost { min-height:48px; padding:12px 24px; border:1.5px solid #14342B; border-radius:999px; background:transparent; color:#14342B; font:700 1rem 'Hanken Grotesk', sans-serif; cursor:pointer; transition:background-color 180ms, color 180ms; } .ds-btn-ghost:hover { background:#14342B; color:#fff; } .ds-btn-ghost:focus-visible { outline:3px solid #2F7A4E; outline-offset:3px; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Form fields on oat panels.",
+      "html": "<label class=\"ds-field\"><span>Email de trabajo</span><input class=\"ds-input\" placeholder=\"compras@tuempresa.com\"></label>",
+      "css": ".ds-field { display:grid; gap:.4rem; font:600 .875rem 'Hanken Grotesk', sans-serif; color:#14342B; } .ds-input { min-height:48px; padding:11px 16px; border:1.5px solid #CFC9BA; border-radius:12px; background:#fff; color:#14342B; font:400 1rem 'Hanken Grotesk', sans-serif; } .ds-input:hover { border-color:#6E7D75; } .ds-input:focus { outline:none; border-color:#2F7A4E; box-shadow:0 0 0 3px #E6F0E7; }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Product benefits and line features.",
+      "html": "<span class=\"ds-chip\">Sin gluten</span>",
+      "css": ".ds-chip { display:inline-flex; padding:5px 12px; border-radius:999px; background:rgba(20,52,43,.07); color:#14342B; font:600 .8125rem 'Hanken Grotesk', sans-serif; }"
+    },
+    {
+      "name": "Line Tile",
+      "kind": "custom",
+      "refersTo": "line-tile",
+      "description": "Link to a product line on its food field.",
+      "html": "<a class=\"ds-line-tile\" href=\"#\">Plant-Based <svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\"><path d=\"M7 17 17 7M8 7h9v9\"/></svg></a>",
+      "css": ".ds-line-tile { display:flex; justify-content:space-between; align-items:center; gap:1rem; padding:18px 20px; border-radius:14px; background:#D5E5C7; color:#14342B; text-decoration:none; font:700 1.1875rem 'Bricolage Grotesque', sans-serif; letter-spacing:-.015em; } .ds-line-tile svg { transition:transform 260ms cubic-bezier(.16,1,.3,1); } .ds-line-tile:hover svg { transform:translate(2px,-2px); } .ds-line-tile:focus-visible { outline:3px solid #2F7A4E; outline-offset:3px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "description": "Header links with line-colour dots and a pill for the current page.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\"><i style=\"background:#F1DFB6\"></i>Alimentos</a><a href=\"#\" aria-current=\"page\"><i style=\"background:#F6CDB2\"></i>Superfoods</a><a href=\"#\">Contacto</a></nav>",
+      "css": ".ds-nav { display:flex; gap:.25rem; font:600 .9375rem 'Hanken Grotesk', sans-serif; } .ds-nav a { display:inline-flex; align-items:center; gap:.45rem; padding:8px 13px; border-radius:999px; color:#4A5D54; text-decoration:none; } .ds-nav a:hover, .ds-nav a[aria-current] { color:#14342B; background:#F5F2EA; } .ds-nav i { width:10px; height:10px; border-radius:50%; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The produce aisle, set by a careful hand",
+    "overview": "The category standard for a healthy-food supplier executed at Oatly / Rude Health craft: product photography on food-coloured fields, a confident grotesque for headings, white and oat grounds, and the proposal request always one step away. Built for trade buyers.",
+    "keyCharacteristics": ["One food field per product line", "Leaf green reserved for actions", "Flat, tonal depth with hairlines", "Placeholder data visibly labelled"],
+    "rules": [
+      { "name": "One line, one field", "body": "Each product line owns one food tint and nothing else uses it.", "section": "colors" },
+      { "name": "Green means go", "body": "Leaf green appears only on actions and focus.", "section": "colors" },
+      { "name": "Flat by default", "body": "No card shadows; depth comes from grounds and hairlines.", "section": "elevation" }
+    ],
+    "dos": ["Do keep a proposal action visible on every page.", "Do label placeholder statistics until they are real."],
+    "donts": ["Don't add eyebrow labels, gradient text or emoji icons.", "Don't repeat one photo across a product grid."]
+  }
+}

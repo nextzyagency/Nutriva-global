@@ -1,0 +1,21 @@
+---
+import Steps from '../ui/Steps.astro';
+
+const steps = [
+  { title: 'Contacto inicial', desc: 'Completa el formulario mayorista. Un asesor te responde en menos de 24 horas hábiles.' },
+  { title: 'Propuesta personalizada', desc: 'Analizamos tu mercado, volúmenes y necesidades y diseñamos una propuesta comercial a tu medida.' },
+  { title: 'Muestras y validación', desc: 'Enviamos muestras físicas de los productos seleccionados, sin costo para distribuidores calificados.' },
+  { title: 'Primer pedido y logística', desc: 'Definimos incoterms y documentación aduanera, y coordinamos el despacho a tu país.' },
+  { title: 'Soporte continuo', desc: 'Ejecutivo de cuenta dedicado, materiales de merchandising y trazabilidad de cada lote.' },
+];
+---
+
+<section class="section section--oat" id="como-trabajamos" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="how-title">Del primer contacto al primer pedido</h2>
+      <p class="lede">Un proceso pensado para distribuidores: sabes en cada paso qué recibes y cuándo.</p>
+    </div>
+    <Steps steps={steps} label="Pasos para trabajar con Nutriva Global" />
+  </div>
+</section>

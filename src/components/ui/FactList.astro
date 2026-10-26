@@ -1,0 +1,41 @@
+---
+/** Lista de definiciones en dos columnas: título fuerte + explicación, separados por filetes. */
+interface Item { title: string; desc: string }
+interface Props { items: Item[]; columns?: 2 | 3 }
+const { items, columns = 2 } = Astro.props;
+---
+
+<dl class="facts" style={`--cols:${columns}`}>
+  {items.map((it) => (
+    <div class="fact">
+      <dt>{it.title}</dt>
+      <dd>{it.desc}</dd>
+    </div>
+  ))}
+</dl>
+
+<style>
+.facts {
+  display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+  gap: 0 clamp(1.5rem, 4vw, 4rem);
+  margin: 0;
+}
+.fact {
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--line-strong);
+}
+.fact dt {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 24;
+  margin-bottom: 0.4rem;
+}
+.fact dd { margin: 0; color: var(--ink-soft); max-width: 34em; }
+
+@media (max-width: 760px) {
+  .facts { grid-template-columns: 1fr; }
+}
+</style>

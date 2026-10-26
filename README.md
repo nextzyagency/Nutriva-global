@@ -6,7 +6,7 @@ Nutriva Global es una plataforma e-commerce premium construida con **Astro**, **
 
 - **Framework:** Astro 6.0+
 - **Estilos:** Tailwind CSS (Vite Plugin)
-- **Animaciones:** GSAP (Pantalla de carga premium)
+- **Diseño:** sistema documentado en `DESIGN.md` (tokens en `src/styles/global.css`)
 - **Despliegue:** Optimizado para Cloudflare Pages
 - **SEO:** Metadatos dinámicos, JSON-LD estructurado, Robots.txt y Sitemap.
 
@@ -21,7 +21,7 @@ Nutriva-global/
 │   ├── assets/          # Imágenes optimizadas vía astro:assets
 │   ├── components/      # Componentes UI y Secciones
 │   ├── data/            # Fuente de verdad de productos (JSON)
-│   ├── layouts/         # Plantilla base con SEO y Loading Screen
+│   ├── layouts/         # Plantilla base con SEO
 │   ├── pages/           # Rutas del sitio (Home, Categorías, Nosotros, Contacto)
 │   └── styles/          # Estilos globales y tokens de diseño
 └── astro.config.mjs     # Configuración de Astro y Vite
@@ -29,7 +29,7 @@ Nutriva-global/
 
 ## 🛠️ Características Principales
 
-1. **Pantalla de Carga Premium:** Una experiencia de entrada fluida que asegura que todos los recursos visuales estén listos antes de mostrar el sitio.
+1. **Propuesta mayorista en cada página:** formulario en el hero, CTA y página de contacto con prellenado por línea y producto.
 2. **Arquitectura de Datos:** Los productos se gestionan desde `src/data/products.json`, facilitando actualizaciones de catálogo sin tocar código.
 3. **Optimización de Imágenes:** Uso de `astro:assets` para conversión automática a WebP y Lazy Loading.
 4. **SEO de Alto Rendimiento:** Jerarquía de encabezados (H1-H3) estricta, etiquetas `alt` en todas las imágenes y Schema.org integrado para visibilidad en Google.

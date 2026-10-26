@@ -1,0 +1,46 @@
+---
+/** Cifras en línea, compuestas como texto: número + qué mide. Siempre marcadas como ejemplo mientras no sean reales. */
+import ExampleNote from './ExampleNote.astro';
+
+interface Figure { num: string; label: string }
+interface Props { figures: Figure[]; source?: string }
+const { figures, source } = Astro.props;
+---
+
+<div class="figures-wrap">
+  <dl class="figures">
+    {figures.map((f) => (
+      <div class="figure">
+        <dt>{f.label}</dt>
+        <dd>{f.num}</dd>
+      </div>
+    ))}
+  </dl>
+  <p class="figures-foot">
+    <ExampleNote />
+    {source && <span>{source}</span>}
+  </p>
+</div>
+
+<style>
+.figures { display: grid; gap: 0; margin: 0; }
+.figure {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.25rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--line-strong);
+}
+.figure:last-child { border-bottom: 1px solid var(--line-strong); }
+.figure dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.figure dt { color: var(--ink-soft); max-width: 26em; }
+.figures-foot { display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; margin-top: 0.875rem; font-size: 0.8125rem; color: var(--ink-faint); }
+</style>

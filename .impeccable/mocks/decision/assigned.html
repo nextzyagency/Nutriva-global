@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=1440">
+<link href="https://fonts.googleapis.com/css2?family=Ultra&family=Big+Shoulders+Display:wght@700;900&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--cobalt:#17357A;--marigold:#E9A21A;--brick:#C2402B;--stock:#F3EAD3;--ink:#1B1B18}
+*{margin:0;box-sizing:border-box}
+body{width:1440px;height:900px;background:var(--cobalt);font-family:Archivo,sans-serif;color:var(--ink);overflow:hidden}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 48px;color:var(--stock);font:700 15px 'Big Shoulders Display';letter-spacing:.12em;text-transform:uppercase}
+nav b{font:400 22px Ultra;letter-spacing:0}
+nav span{margin-left:28px}
+.label{position:absolute;left:48px;right:48px;top:70px;bottom:28px;background:var(--marigold);border:6px solid var(--stock);outline:3px solid var(--brick);outline-offset:-16px;display:grid;grid-template-columns:1fr 460px 1fr;gap:0}
+.brand{grid-column:1/-1;text-align:center;padding-top:40px}
+.brand small{font:700 16px 'Big Shoulders Display';letter-spacing:.3em;color:var(--brick)}
+.brand h1{font:400 120px/0.9 Ultra;color:var(--cobalt);letter-spacing:-.01em}
+.oval{grid-column:2;grid-row:2;height:330px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#7aa35a,#3b6b2c 60%,#244a1e);border:8px solid var(--stock);outline:3px solid var(--cobalt)}
+.fields{grid-row:2;padding:30px 40px;font:700 18px 'Big Shoulders Display';color:var(--cobalt);letter-spacing:.1em}
+.fields div{border-bottom:2px solid var(--cobalt);padding:12px 0;display:flex;justify-content:space-between}
+.fields em{font-style:normal;color:var(--brick);font-size:24px}
+.claim{font:900 44px/1 'Big Shoulders Display';color:var(--ink);text-transform:uppercase;margin-bottom:14px}
+.band{grid-column:1/-1;align-self:end;background:var(--brick);color:var(--stock);display:flex;gap:16px;align-items:center;padding:20px 40px}
+.band p{font:700 22px 'Big Shoulders Display';letter-spacing:.06em;text-transform:uppercase;flex:1}
+.in{background:var(--stock);height:48px;width:220px;border:2px solid var(--ink)}
+.btn{background:var(--cobalt);color:var(--stock);font:700 18px 'Big Shoulders Display';letter-spacing:.1em;padding:14px 26px;text-transform:uppercase}
+</style></head><body>
+<nav><b>Nutriva Global</b><div><span>Catálogo</span><span>Origen</span><span>Distribuidores</span><span>Nosotros</span><span>Contacto</span></div></nav>
+<div class="label">
+  <div class="brand"><small>★ Selección de exportación · Ámsterdam ★</small><h1>NUTRIVA</h1></div>
+  <div class="fields"><p class="claim">Alimentos saludables para tu mercado</p><div>ORIGEN <em>Andes · México · Canadá</em></div><div>LÍNEAS <em>04</em></div><div>CALIDAD <em>Selecta</em></div></div>
+  <div class="oval"></div>
+  <div class="fields"><div>LOTE <em>NG-2026</em></div><div>SNACKS · BARRAS</div><div>PLANT-BASED</div><div>SUPERFOODS</div><div>LÍNEA GLOBAL</div></div>
+  <div class="band"><p>Pide la propuesta mayorista</p><div class="in"></div><div class="in"></div><div class="btn">Solicitar propuesta</div></div>
+</div>
+</body></html>

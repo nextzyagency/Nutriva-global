@@ -1,0 +1,101 @@
+---
+// Origins.astro — origen de los ingredientes y mercados atendidos.
+import ExampleNote from '../ui/ExampleNote.astro';
+
+const origins = [
+  { ingredient: 'Quinoa', place: 'Andes de Perú y Bolivia' },
+  { ingredient: 'Chía', place: 'México y Argentina' },
+  { ingredient: 'Linaza', place: 'Canadá' },
+  { ingredient: 'Frutos secos y avena', place: 'Productores certificados de la UE' },
+];
+
+const markets = ['Países Bajos', 'Alemania', 'Francia', 'España', 'Estados Unidos', 'México', 'Brasil', 'Colombia', 'Japón', 'Australia'];
+---
+
+<section class="section" id="origen" aria-labelledby="origin-title">
+  <div class="wrap origin-grid">
+    <div class="origin-intro">
+      <h2 id="origin-title">Sabemos de dónde viene cada ingrediente</h2>
+      <p class="lede">Trabajamos directamente con proveedores certificados y priorizamos el comercio justo. Cada lote viaja con su documentación de trazabilidad, del productor a tu almacén.</p>
+    </div>
+
+    <div class="origin-data">
+      <table class="origin-table">
+        <caption class="sr-only">Origen de los ingredientes principales</caption>
+        <thead><tr><th scope="col">Ingrediente</th><th scope="col">Origen</th></tr></thead>
+        <tbody>
+          {origins.map((o) => (
+            <tr><th scope="row">{o.ingredient}</th><td>{o.place}</td></tr>
+          ))}
+        </tbody>
+      </table>
+
+      <div class="markets">
+        <h3 class="markets-title">Mercados que atendemos</h3>
+        <ul class="markets-list" role="list">
+          {markets.map((m) => <li>{m}</li>)}
+        </ul>
+        <ExampleNote />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.origin-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.origin-intro h2 { margin-bottom: 1.25rem; }
+.origin-intro { position: sticky; top: 120px; }
+
+.origin-table { width: 100%; border-collapse: collapse; }
+.origin-table thead th {
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ink-faint);
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--ink);
+}
+.origin-table tbody th,
+.origin-table td {
+  text-align: left;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--line-strong);
+  vertical-align: baseline;
+}
+.origin-table tbody th {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  padding-right: 1.5rem;
+}
+.origin-table td { color: var(--ink-soft); font-size: 1.0625rem; }
+
+.markets { margin-top: 2.5rem; }
+.markets-title { font-size: 1.125rem; margin-bottom: 0.875rem; }
+.markets-list { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0 0 0.875rem; }
+.markets-list li {
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-ctl);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .origin-grid { grid-template-columns: 1fr; }
+  .origin-intro { position: static; }
+}
+@media (max-width: 480px) {
+  .origin-table tbody th, .origin-table td { display: block; padding: 0; border: 0; }
+  .origin-table tbody tr { display: block; padding: 1rem 0; border-bottom: 1px solid var(--line-strong); }
+  .origin-table td { margin-top: 0.25rem; }
+  .origin-table thead { display: none; }
+}
+</style>

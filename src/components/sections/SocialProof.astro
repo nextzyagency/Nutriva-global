@@ -1,275 +1,128 @@
 ---
+import ExampleNote from '../ui/ExampleNote.astro';
+import Figures from '../ui/Figures.astro';
+
 const testimonials = [
   {
-    quote: "Nutriva Global transformó nuestra línea de productos saludables. La calidad es excepcional y la logística internacional es impecable. Nuestros clientes en Europa y LATAM aman los sabores.",
-    author: "María González",
-    role: "Directora de Compras",
-    company: "BioMarket España",
-    rating: 5
+    quote: 'Nutriva Global transformó nuestra línea de productos saludables. La calidad es excepcional y la logística internacional es impecable. Nuestros clientes en Europa y LATAM aman los sabores.',
+    author: 'María González',
+    role: 'Directora de Compras, BioMarket España',
   },
   {
-    quote: "Distribuimos los superfoods de Nutriva Global en Japón y la respuesta ha sido increíble. Las certificaciones orgánicas y el packaging premium los diferencian completamente del mercado.",
-    author: "Kenji Tanaka",
-    role: "CEO",
-    company: "NaturaShop Japan",
-    rating: 5
+    quote: 'Distribuimos los superfoods de Nutriva Global en Japón y la respuesta ha sido increíble. Las certificaciones orgánicas y el packaging los diferencian del mercado.',
+    author: 'Kenji Tanaka',
+    role: 'CEO, NaturaShop Japan',
   },
   {
-    quote: "Llevamos 2 años trabajando con Nutriva como proveedor mayorista. Siempre cumplen los tiempos, la calidad es consistente y el soporte es de primer nivel. Los recomendaría sin dudarlo.",
-    author: "Carlos Medina",
-    role: "Gerente de Operaciones",
-    company: "Salud+, Colombia",
-    rating: 5
-  }
+    quote: 'Llevamos 2 años trabajando con Nutriva como proveedor mayorista. Siempre cumplen los tiempos, la calidad es consistente y el soporte es de primer nivel.',
+    author: 'Carlos Medina',
+    role: 'Gerente de Operaciones, Salud+, Colombia',
+  },
 ];
 
-const stats = [
-  { number: '20+', label: 'Países atendidos', sublabel: 'Europa, LATAM, Asia, Norteamérica' },
-  { number: '50k+', label: 'Clientes satisfechos', sublabel: 'Consumidores finales y mayoristas' },
-  { number: '98%', label: 'Satisfacción', sublabel: 'Índice de satisfacción global' },
-  { number: '5', label: 'Certificaciones', sublabel: 'Orgánico, Non-GMO, Vegan y más' },
+const figures = [
+  { num: '20+', label: 'países con distribución activa en Europa, LATAM, Asia y Norteamérica' },
+  { num: '50k+', label: 'clientes entre consumidores finales y mayoristas' },
+  { num: '98 %', label: 'índice de satisfacción de distribuidores' },
 ];
+
+const certs = ['Organic EU', 'Non-GMO Verified', 'Vegan Society', 'ISO 22000', 'HACCP'];
+
+const [lead, ...rest] = testimonials;
 ---
 
-<section class="social-proof section-pad" id="testimonios" aria-label="Testimonios y prueba social">
-  <div class="container-xl">
+<section class="section" id="testimonios" aria-labelledby="proof-title">
+  <div class="wrap">
+    <div class="proof-grid">
+      <div class="proof-main">
+        <h2 id="proof-title">Lo que dicen quienes ya distribuyen Nutriva</h2>
 
-    <!-- Stats row -->
-    <div class="sp-stats">
-      {stats.map((stat, i) => (
-        <div class="sp-stat gsap-reveal" data-delay={i * 0.1}>
-          <div class="sp-stat-number text-gradient">{stat.number}</div>
-          <div class="sp-stat-label">{stat.label}</div>
-          <div class="sp-stat-sub">{stat.sublabel}</div>
+        <figure class="lead-quote">
+          <blockquote><p>{lead.quote}</p></blockquote>
+          <figcaption><strong>{lead.author}</strong> · {lead.role}</figcaption>
+        </figure>
+
+        <div class="quotes">
+          {rest.map((t) => (
+            <figure class="quote">
+              <blockquote><p>{t.quote}</p></blockquote>
+              <figcaption><strong>{t.author}</strong><span>{t.role}</span></figcaption>
+            </figure>
+          ))}
         </div>
-      ))}
-    </div>
-
-    <!-- Header -->
-    <div class="sp-header gsap-reveal">
-      <p class="section-label">Prueba Social</p>
-      <h2>Lo que dicen nuestros distribuidores</h2>
-      <div class="divider-gold"></div>
-    </div>
-
-    <!-- Testimonials -->
-    <div class="testimonials-grid">
-      {testimonials.map((t, i) => (
-        <blockquote class="testimonial-card gsap-reveal" data-delay={i * 0.15} aria-label={`Testimonio de ${t.author}`}>
-          <div class="t-stars" aria-label={`${t.rating} estrellas`}>
-            {Array.from({ length: t.rating }).map(() => (
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="#D4AF37" stroke="#D4AF37" stroke-width="1" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ))}
-          </div>
-          <p class="t-quote">&ldquo;{t.quote}&rdquo;</p>
-          <footer class="t-author">
-            <div class="t-avatar" aria-hidden="true">
-              {t.author.charAt(0)}
-            </div>
-            <div>
-              <cite class="t-name">{t.author}</cite>
-              <div class="t-role">{t.role} &mdash; {t.company}</div>
-            </div>
-          </footer>
-        </blockquote>
-      ))}
-    </div>
-
-    <!-- Certifications strip -->
-    <div class="certs-strip gsap-reveal">
-      <p class="certs-title">Certificaciones internacionales</p>
-      <div class="certs-list">
-        {['Organic EU', 'Non-GMO Verified', 'Vegan Society', 'ISO 22000', 'HACCP Certified'].map(cert => (
-          <div class="cert-item">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            {cert}
-          </div>
-        ))}
+        <ExampleNote text="Testimonios de ejemplo" />
       </div>
-    </div>
 
+      <aside class="proof-side" aria-label="Cifras y certificaciones">
+        <Figures figures={figures} />
+        <div class="certs">
+          <h3 class="certs-title">Certificaciones</h3>
+          <ul role="list" class="certs-list">
+            {certs.map((c) => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                {c}
+              </li>
+            ))}
+          </ul>
+          <ExampleNote />
+        </div>
+      </aside>
+    </div>
   </div>
 </section>
 
 <style>
-.social-proof {
-  background: var(--white);
-}
-
-.sp-stats {
+.proof-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: var(--gray-mid);
-  border: 1px solid var(--gray-mid);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: 5rem;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
 }
 
-.sp-stat {
-  background: var(--gray-soft);
-  padding: 2rem;
-  text-align: center;
-  transition: background var(--transition);
-}
+.proof-main h2 { max-width: 13em; margin-bottom: clamp(2rem, 4vw, 3rem); }
 
-.sp-stat:hover { background: white; }
-
-.sp-stat-number {
-  font-family: var(--font-heading);
-  font-size: 2.5rem;
-  font-weight: 900;
-  line-height: 1;
-  margin-bottom: 0.35rem;
-}
-
-.sp-stat-label {
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--carbon);
-  margin-bottom: 0.2rem;
-}
-
-.sp-stat-sub {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-
-.sp-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.sp-header h2 { margin-bottom: 0.25rem; }
-.sp-header .divider-gold { margin: 1rem auto 0; }
-
-.testimonials-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.testimonial-card {
-  background: var(--gray-soft);
-  border: 1px solid var(--gray-mid);
-  border-radius: var(--radius-lg);
-  padding: 2rem;
-  transition: all var(--transition);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  margin: 0;
-}
-
-.testimonial-card:hover {
-  border-color: rgba(31,122,99,0.25);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-}
-
-.t-stars { display: flex; gap: 2px; }
-
-.t-quote {
-  font-size: 0.92rem;
-  color: var(--carbon);
-  line-height: 1.75;
-  flex: 1;
-  font-style: italic;
-}
-
-.t-author {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--gray-mid);
-}
-
-.t-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--verde-deep);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-size: 1rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.t-name {
-  font-family: var(--font-heading);
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--carbon);
-  font-style: normal;
-  display: block;
-  margin-bottom: 0.1rem;
-}
-
-.t-role {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.certs-strip {
-  background: var(--verde-deep);
-  border-radius: var(--radius-lg);
-  padding: 1.75rem 2rem;
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.certs-title {
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.6);
-  white-space: nowrap;
-}
-
-.certs-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  flex: 1;
-}
-
-.cert-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-family: var(--font-heading);
-  font-size: 0.82rem;
+.lead-quote { margin: 0 0 2.5rem; }
+.lead-quote blockquote { margin: 0; }
+.lead-quote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.125rem);
   font-weight: 600;
-  color: white;
-  padding: 0.35rem 0.85rem;
-  border-radius: 100px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  white-space: nowrap;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 48;
+  text-indent: -0.45em;
 }
+.lead-quote p::before { content: '“'; }
+.lead-quote p::after { content: '”'; }
+.lead-quote figcaption { margin-top: 1.25rem; color: var(--ink-soft); }
+.lead-quote figcaption strong { color: var(--ink); }
 
-.cert-item svg { color: var(--gold); flex-shrink: 0; }
-
-@media (max-width: 900px) {
-  .sp-stats { grid-template-columns: repeat(2, 1fr); }
-  .testimonials-grid { grid-template-columns: 1fr; }
+.quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--line-strong);
+  margin-bottom: 1rem;
 }
+.quote { margin: 0; }
+.quote blockquote { margin: 0; }
+.quote p { color: var(--ink); }
+.quote p::before { content: '“'; }
+.quote p::after { content: '”'; }
+.quote figcaption { margin-top: 1rem; display: grid; font-size: 0.9375rem; }
+.quote figcaption span { color: var(--ink-faint); }
 
-@media (max-width: 600px) {
-  .sp-stats { grid-template-columns: 1fr 1fr; }
-  .certs-strip { flex-direction: column; align-items: flex-start; }
+.certs { margin-top: 2.5rem; }
+.certs-title { font-size: 1.125rem; margin-bottom: 0.75rem; }
+.certs-list { list-style: none; padding: 0; margin: 0 0 0.75rem; display: grid; gap: 0.5rem; }
+.certs-list li { display: flex; align-items: center; gap: 0.6rem; font-weight: 600; }
+.certs-list svg { color: var(--green); }
+
+@media (max-width: 960px) {
+  .proof-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .quotes { grid-template-columns: 1fr; }
 }
 </style>

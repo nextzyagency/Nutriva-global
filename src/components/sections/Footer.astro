@@ -1,255 +1,114 @@
 ---
-const footerLinks = {
-  productos: [
-    { href: '/productos/alimentos-saludables', label: 'Alimentos Saludables', title: 'Alimentos saludables orgánicos' },
-    { href: '/productos/plant-based', label: 'Plant-Based', title: 'Productos plant-based y veganos' },
-    { href: '/productos/superfoods', label: 'Superfoods', title: 'Superfoods y suplementos naturales' },
-    { href: '/productos/linea-global', label: 'Línea Global', title: 'Línea global de productos internacionales' },
-  ],
-  empresa: [
-    { href: '/nosotros', label: 'Sobre Nosotros', title: 'Conoce Nutriva Global' },
-    { href: '/contacto', label: 'Contacto', title: 'Contactar Nutriva Global' },
-    { href: '/contacto#mayoristas', label: 'Distribuidores', title: 'Información para distribuidores' },
-  ],
-};
+import { contact, lines } from '../../data/site';
+
+const company = [
+  { href: '/nosotros', label: 'Sobre nosotros' },
+  { href: '/contacto', label: 'Contacto' },
+  { href: '/contacto#propuesta', label: 'Distribuidores' },
+];
 ---
 
-<footer class="footer" role="contentinfo">
-  <div class="container-xl footer-content">
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="Nutriva Global, inicio">Nutriva<span>Global</span></a>
+        <p>Nutriendo el mundo, naturalmente. Alimentos saludables, sostenibles y accesibles para distribuidores de todo el mundo, desde Ámsterdam.</p>
+      </div>
 
-    <!-- Brand -->
-    <div class="footer-brand">
-      <a href="/" title="Nutriva Global - Alimentos Saludables Globales" class="footer-logo-link">
-        <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:1rem;">
-          <svg width="32" height="32" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <circle cx="18" cy="18" r="18" fill="#6BCB77" fill-opacity="0.2"/>
-            <circle cx="18" cy="18" r="18" stroke="#6BCB77" stroke-width="1.5" fill="none"/>
-            <ellipse cx="18" cy="18" rx="6" ry="12" stroke="#F5F5DC" stroke-width="1.5" fill="none"/>
-            <line x1="6" y1="18" x2="30" y2="18" stroke="#F5F5DC" stroke-width="1.5"/>
-            <path d="M18 8 C22 12 24 16 22 20 C20 24 14 26 18 30" stroke="#D4AF37" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-          </svg>
-          <div>
-            <div style="font-family:var(--font-heading); font-weight:800; font-size:1.2rem; color:white; letter-spacing:-0.02em;">Nutriva</div>
-            <div style="font-family:var(--font-heading); font-size:0.6rem; font-weight:500; color:var(--gold); letter-spacing:0.15em; text-transform:uppercase;">Global</div>
-          </div>
-        </div>
-      </a>
-      <p class="footer-desc">
-        Nutriendo el mundo, naturalmente. Alimentos saludables, sostenibles y accesibles con distribución en más de 20 países.
-      </p>
-      <div class="footer-social">
-        <a href="https://www.instagram.com/nutrivaglobal" title="Nutriva Global en Instagram" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a href="https://www.linkedin.com/company/nutriva-global" title="Nutriva Global en LinkedIn" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a href="https://wa.me/31201234567" title="WhatsApp Nutriva Global" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="WhatsApp">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-        </a>
+      <nav class="footer-col" aria-labelledby="f-products">
+        <h2 id="f-products" class="footer-heading">Productos</h2>
+        <ul role="list">
+          {lines.map((l) => <li><a href={`/productos/${l.id}`}>{l.name}</a></li>)}
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-labelledby="f-company">
+        <h2 id="f-company" class="footer-heading">Empresa</h2>
+        <ul role="list">
+          {company.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <h2 class="footer-heading">Contacto</h2>
+        <ul role="list">
+          <li><a href={contact.whatsapp} target="_blank" rel="noopener noreferrer">{contact.phone}</a></li>
+          <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
+          <li>{contact.city}</li>
+        </ul>
+        <ul role="list" class="footer-social">
+          <li><a href={contact.instagram} target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a href={contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
       </div>
     </div>
 
-    <!-- Products column -->
-    <div class="footer-col">
-      <h3 class="footer-heading">Productos</h3>
-      <ul class="footer-links" role="list">
-        {footerLinks.productos.map(link => (
-          <li>
-            <a href={link.href} title={link.title} class="footer-link">{link.label}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <!-- Company column -->
-    <div class="footer-col">
-      <h3 class="footer-heading">Empresa</h3>
-      <ul class="footer-links" role="list">
-        {footerLinks.empresa.map(link => (
-          <li>
-            <a href={link.href} title={link.title} class="footer-link">{link.label}</a>
-          </li>
-        ))}
-      </ul>
-    </div>
-
-    <!-- Contact column -->
-    <div class="footer-col">
-      <h3 class="footer-heading">Contacto</h3>
-      <ul class="footer-contact" role="list">
-        <li>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.6a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 3h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 10.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17z"/></svg>
-          <a href="https://wa.me/31201234567" title="WhatsApp Nutriva Global" class="footer-link">+31 20 123 4567</a>
-        </li>
-        <li>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          <a href="mailto:info@nutrivaglobal.com" title="Email Nutriva Global" class="footer-link">info@nutrivaglobal.com</a>
-        </li>
-        <li>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>Ámsterdam, Países Bajos</span>
-        </li>
-      </ul>
-      <div class="footer-certs">
-        <span class="cert-badge">Organic EU</span>
-        <span class="cert-badge">Non-GMO</span>
-        <span class="cert-badge">Vegan</span>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <div class="container-xl footer-bottom-inner">
+    <div class="footer-bottom">
       <p>&copy; {new Date().getFullYear()} Nutriva Global. Todos los derechos reservados.</p>
-      <p>Ámsterdam, Países Bajos &mdash; <span style="color:var(--gold);">Nutriendo el mundo, naturalmente.</span></p>
+      <p>Ámsterdam, Países Bajos</p>
     </div>
   </div>
 </footer>
 
 <style>
 .footer {
-  background-color: var(--carbon);
-  color: rgba(255,255,255,0.7);
-  padding-top: 5rem;
+  background: var(--band);
+  color: var(--band-soft);
+  padding-top: clamp(4rem, 8vw, 6rem);
+  overflow: hidden;
 }
 
-.footer-content {
+.footer-top {
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
-  gap: 3rem;
-  padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 2.5rem;
 }
 
-.footer-logo-link { display: inline-block; }
-
-.footer-desc {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: rgba(255,255,255,0.5);
-  margin-bottom: 1.5rem;
+.footer-logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--band-text);
 }
-
-.footer-social {
-  display: flex;
-  gap: 0.75rem;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.6);
-  transition: all 0.25s ease;
-}
-
-.social-link:hover {
-  background: var(--verde-deep);
-  color: white;
-  transform: translateY(-2px);
-}
+.footer-logo span { font-family: var(--font-body); font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--band-soft); }
+.footer-brand p { margin-top: 1rem; max-width: 26em; }
 
 .footer-heading {
-  font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.25rem;
+  letter-spacing: 0;
+  color: var(--band-text);
+  margin-bottom: 1rem;
 }
+.footer-col ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+.footer-col a { transition: color 160ms var(--ease-out); }
+.footer-col a:hover { color: var(--band-text); text-decoration: underline; text-underline-offset: 0.25em; }
+.footer-social { margin-top: 1.25rem !important; }
 
-.footer-links {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.footer-link {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.55);
-  transition: color 0.2s ease;
-}
-
-.footer-link:hover { color: var(--verde-light); }
-
-.footer-contact {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.footer-contact li {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.88rem;
-  color: rgba(255,255,255,0.55);
-}
-
-.footer-contact svg { flex-shrink: 0; color: var(--gold); }
-
-.footer-certs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.25rem;
-}
-
-.cert-badge {
-  font-family: var(--font-heading);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.6rem;
-  border-radius: 100px;
-  border: 1px solid rgba(212,175,55,0.4);
-  color: var(--gold);
-}
+.footer :global(:focus-visible) { outline-color: var(--field-sage); }
 
 .footer-bottom {
-  padding: 1.5rem 0;
-}
-
-.footer-bottom-inner {
+  margin-top: clamp(3rem, 6vw, 4.5rem);
   display: flex;
-  align-items: center;
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--band-line);
+  font-size: 0.875rem;
 }
 
-.footer-bottom p {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.3);
+@media (max-width: 860px) {
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
 }
-
-@media (max-width: 900px) {
-  .footer-content {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-  .footer-brand {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
-  .footer-bottom-inner {
-    flex-direction: column;
-    text-align: center;
-  }
+@media (max-width: 480px) {
+  .footer-top { grid-template-columns: 1fr; }
 }
 </style>

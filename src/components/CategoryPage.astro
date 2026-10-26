@@ -1,0 +1,246 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import Header from './Header.astro';
+import Footer from './sections/Footer.astro';
+import CTASection from './sections/CTASection.astro';
+import FAQSection from './sections/FAQSection.astro';
+import ExampleNote from './ui/ExampleNote.astro';
+import Figures from './ui/Figures.astro';
+import FactList from './ui/FactList.astro';
+import Steps from './ui/Steps.astro';
+import products from '../data/products.json';
+import { images, lineById } from '../data/site';
+
+interface Item { title: string; desc: string }
+interface Props {
+  id: string;
+  seo: { title: string; description: string; keywords: string };
+  title: string;
+  intro: string;
+  chips: string[];
+  heroAlt: string;
+  context: { title: string; text: string; figures: { num: string; label: string }[] };
+  catalogue: { title: string; lede: string; action: string };
+  benefits: { title: string; items: Item[] };
+  process: { title: string; steps: Item[] };
+}
+
+const { id, seo, title, intro, chips, heroAlt, context, catalogue, benefits, process } = Astro.props;
+const category = products.categories.find((c) => c.id === id)!;
+const line = lineById(id);
+// Sin fotos propias por producto, la línea se muestra como lista de precios con una sola imagen
+const hasProductPhotos = new Set(category.products.map((p) => p.image)).size > 1;
+const proposalHref = (extra = '') => `/contacto?linea=${encodeURIComponent(category.name)}${extra}#propuesta`;
+---
+
+<Layout title={seo.title} description={seo.description} keywords={seo.keywords}>
+  <Header />
+  <main id="main-content" style={`--field:${line.field}`}>
+    <section class="cat-hero" aria-labelledby="cat-title">
+      <div class="wrap cat-hero-grid">
+        <div class="cat-hero-copy">
+          <nav aria-label="Ruta de navegación" class="crumbs">
+            <ol role="list">
+              <li><a href="/">Inicio</a></li>
+              <li aria-current="page">{category.name}</li>
+            </ol>
+          </nav>
+          <h1 id="cat-title" class="reveal-up">{title}</h1>
+          <p class="lede reveal-up" style="--d:80ms">{intro}</p>
+          <ul class="cat-chips reveal-up" style="--d:140ms" role="list" aria-label="Características">
+            {chips.map((c) => <li class="chip">{c}</li>)}
+          </ul>
+          <ExampleNote class="cat-note" />
+          <div class="cat-actions reveal-up" style="--d:200ms">
+            <a href={proposalHref()} class="btn btn--primary">
+              Pedir propuesta de {category.name}
+              <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#productos" class="btn btn--ghost">Ver productos</a>
+          </div>
+        </div>
+        <div class="cat-hero-media reveal-img">
+          <Image src={line.image} alt={heroAlt} widths={[480, 720, 960]} sizes="(max-width: 900px) 100vw, 44vw" loading="eager" fetchpriority="high" class="cat-hero-img" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="ctx-title">
+      <div class="wrap ctx-grid">
+        <div>
+          <h2 id="ctx-title">{context.title}</h2>
+          <p class="ctx-text">{context.text}</p>
+        </div>
+        <Figures figures={context.figures} />
+      </div>
+    </section>
+
+    <section class="section section--oat" id="productos" aria-labelledby="catalogue-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="catalogue-title">{catalogue.title}</h2>
+          <p class="lede">{catalogue.lede}</p>
+        </div>
+        {!hasProductPhotos ? (
+          <div class="price-sheet">
+            <div class="price-sheet-media">
+              <Image src={line.image} alt="" widths={[480, 720]} sizes="(max-width: 900px) 100vw, 40vw" loading="lazy" class="cat-hero-img" />
+            </div>
+            <ul class="price-list" role="list">
+              {category.products.map((p) => (
+                <li>
+                  <div>
+                    <h3>{p.name}</h3>
+                    <p class="cat-product-meta"><strong>{p.price}</strong> / {p.unit} · PVP ref.</p>
+                  </div>
+                  <a href={proposalHref(`&producto=${encodeURIComponent(p.name)}`)} class="btn btn--primary btn--sm" aria-label={`${catalogue.action} ${p.name}`}>{catalogue.action}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+        <ul class="cat-products" role="list">
+          {category.products.map((p) => (
+            <li class="cat-product">
+              <div class="cat-product-media">
+                <Image src={images[p.image]} alt={p.alt} widths={[360, 540, 720]} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 400px" loading="lazy" class="cat-product-img" />
+              </div>
+              <div class="cat-product-body">
+                <h3>{p.name}</h3>
+                <p class="cat-product-meta"><strong>{p.price}</strong> / {p.unit} · PVP ref.</p>
+              </div>
+              <a href={proposalHref(`&producto=${encodeURIComponent(p.name)}`)} class="btn btn--primary btn--sm" aria-label={`${catalogue.action} ${p.name}`}>{catalogue.action}</a>
+            </li>
+          ))}
+        </ul>
+        )}
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="benefits-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="benefits-title">{benefits.title}</h2>
+        </div>
+        <FactList items={benefits.items} columns={3} />
+      </div>
+    </section>
+
+    <section class="section section--oat" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="section-head">
+          <h2 id="process-title">{process.title}</h2>
+        </div>
+        <Steps steps={process.steps} label={process.title} />
+      </div>
+    </section>
+
+    <CTASection />
+    <FAQSection />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+.cat-hero {
+  background: var(--field);
+  padding-block: clamp(2rem, 5vw, 4.5rem) clamp(3rem, 6vw, 5.5rem);
+}
+.cat-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+
+.crumbs ol { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0 0 1.5rem; font-size: 0.9375rem; color: var(--ink-soft); }
+.crumbs li + li::before { content: '/'; margin-right: 0.5rem; color: var(--ink-faint); }
+.crumbs a { text-decoration: underline; text-underline-offset: 0.25em; text-decoration-color: rgba(20, 52, 43, 0.3); }
+.crumbs a:hover { text-decoration-color: currentColor; }
+.crumbs [aria-current] { color: var(--ink); font-weight: 600; }
+
+.cat-hero-copy h1 { max-width: 12em; }
+.cat-hero-copy .lede { margin-top: 1.25rem; color: var(--ink); opacity: 0.85; }
+.cat-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 1.5rem 0 0; }
+.cat-chips .chip { background: rgba(255, 255, 255, 0.6); }
+.cat-hero-copy :global(.cat-note) { margin-top: 0.75rem; color: var(--ink-soft); }
+.cat-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+
+.cat-hero-media {
+  aspect-ratio: 5 / 4;
+  border-radius: var(--radius-img);
+  overflow: hidden;
+}
+.cat-hero-img { width: 100%; height: 100%; object-fit: cover; }
+
+.ctx-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+}
+.ctx-grid h2 { max-width: 13em; }
+.ctx-text { margin-top: 1.5rem; font-size: 1.125rem; color: var(--ink-soft); max-width: 36em; }
+
+.cat-products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+}
+.cat-product {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto 1fr;
+  gap: 1rem;
+  align-items: end;
+}
+.cat-product-media {
+  grid-column: 1 / -1;
+  aspect-ratio: 1;
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  background: var(--field);
+}
+.cat-product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms var(--ease-out); }
+.cat-product:hover .cat-product-img { transform: scale(1.035); }
+.cat-product-body h3 { font-size: 1.375rem; }
+.cat-product-meta { margin-top: 0.25rem; color: var(--ink-faint); font-size: 0.9375rem; font-variant-numeric: tabular-nums; }
+.cat-product-meta strong { color: var(--ink); font-weight: 700; }
+
+.price-sheet {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  border-radius: var(--radius-img);
+  overflow: hidden;
+  background: var(--paper);
+}
+.price-sheet-media { position: relative; background: var(--field); min-height: 22rem; }
+.price-sheet-media :global(img) { position: absolute; inset: 0; }
+.price-list { list-style: none; margin: 0; padding: clamp(1.25rem, 3vw, 2.5rem); align-self: center; }
+.price-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+.price-list li:first-child { border-top: 1px solid var(--line); }
+.price-list h3 { font-size: clamp(1.25rem, 2vw, 1.625rem); }
+
+@media (max-width: 900px) {
+  .price-sheet { grid-template-columns: 1fr; }
+  .price-sheet-media { min-height: 0; aspect-ratio: 16 / 9; }
+}
+
+@media (max-width: 1100px) { .cat-products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 900px) {
+  .cat-hero-grid, .ctx-grid { grid-template-columns: 1fr; }
+  .cat-hero-media { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 640px) { .cat-products { grid-template-columns: 1fr; } }
+</style>

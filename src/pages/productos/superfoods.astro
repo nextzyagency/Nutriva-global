@@ -1,229 +1,50 @@
 ---
-import { Image } from 'astro:assets';
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/sections/Footer.astro';
-import CTASection from '../../components/sections/CTASection.astro';
-import FAQSection from '../../components/sections/FAQSection.astro';
-import products from '../../data/products.json';
-import categoryImg from '../../assets/category_superfoods.png';
-
-const category = products.categories.find(c => c.id === 'superfoods')!;
+import CategoryPage from '../../components/CategoryPage.astro';
 ---
 
-<Layout
-  title="Superfoods Distribución Internacional — Chía, Quinoa, Proteínas | Nutriva Global"
-  description="Superfoods de calidad premium para distribución internacional: proteínas vegetales, semillas de chía, linaza, quinoa real y suplementos naturales. Certificados orgánicos."
-  keywords="superfoods distribución internacional, chía orgánica, quinoa premium, proteína vegetal, semillas orgánicas al por mayor"
->
-  <Header />
-  <main id="main-content">
-
-    <section class="cat-hero sf-hero" aria-label="Superfoods Distribución Internacional">
-      <div class="container-xl cat-hero-inner">
-        <div class="cat-hero-content">
-          <p class="section-label cat-label">Superfoods</p>
-          <h1 class="cat-h1"><span class="text-gradient">Superfoods</span><br/>Distribución Internacional</h1>
-          <p class="cat-desc cat-hero-desc">Proteínas vegetales en polvo, semillas de chía, linaza y quinoa real de los Andes. Suplementos naturales con la certificación más exigente del mercado.</p>
-          <div class="cat-badges cat-hero-badges">
-            <span class="badge badge-green">Organic EU</span>
-            <span class="badge badge-gold">Andes Certified</span>
-            <span class="badge badge-green">Non-GMO</span>
-          </div>
-        </div>
-        <div class="gsap-reveal-right">
-          <Image src={categoryImg} alt="Superfoods chía quinoa proteína vegetal Nutriva Global" width={580} height={400} loading="eager" class="cat-hero-photo" />
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" aria-label="Por qué los superfoods importan">
-      <div class="container-xl problem-grid">
-        <div class="gsap-reveal-left">
-          <p class="section-label">El Desafío</p>
-          <h2>Los superfoods del mercado no son lo que prometen</h2>
-          <div class="divider-gold"></div>
-          <p>El 60% de los superfoods comercializados tienen adulteraciones, origen no certificado o procesos que destruyen sus propiedades activas. Nutriva Global garantiza trazabilidad completa desde el productor andino hasta tu destino final.</p>
-        </div>
-        <div class="problem-stats gsap-reveal-right">
-          {[
-            { num: '60%', label: 'de superfoods comerciales son adulterados o no certificados' },
-            { num: '8B+', label: 'mercado global de superfoods en 2025' },
-            { num: '28%', label: 'crecimiento anual del segmento proteínas vegetales' },
-          ].map(s => (
-            <div class="problem-stat">
-              <div class="pstat-num text-gradient">{s.num}</div>
-              <div class="pstat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad bg-gray-soft" id="productos-superfoods" aria-label="Catálogo superfoods">
-      <div class="container-xl">
-        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
-          <p class="section-label">Catálogo</p>
-          <h2>Superfoods de origen certificado</h2>
-          <div class="divider-gold" style="margin:1rem auto 0;"></div>
-        </div>
-        <div class="products-grid">
-          {category.products.map((p, i) => (
-            <div class="product-card gsap-reveal" data-delay={i * 0.12}>
-              <div class="product-image-wrap">
-                <Image src={categoryImg} alt={p.alt} width={400} height={300} loading="lazy" class="product-img" />
-              </div>
-              <div class="product-body">
-                <h3 class="product-name">{p.name}</h3>
-                <div class="product-footer">
-                  <div class="product-price">
-                    <span class="price-amount">{p.price}</span>
-                    <span class="price-unit">/ {p.unit}</span>
-                  </div>
-                  <a href="/contacto" title={`Pedir ${p.name}`} class="btn-primary product-btn">Pedir</a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" aria-label="Beneficios superfoods">
-      <div class="container-xl">
-        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
-          <p class="section-label">Beneficios</p>
-          <h2>Transformación real con superfoods certificados</h2>
-          <div class="divider-gold" style="margin:1rem auto 0;"></div>
-        </div>
-        <div class="benefits-grid">
-          {[
-            { icon: '🌾', title: 'Origen andino auténtico', desc: 'Quinoa real de altiplanos bolivianos y peruanos a 3800m. Nutrientes que ningún suelo bajo puede replicar.' },
-            { icon: '💎', title: 'Trazabilidad completa', desc: 'Código QR en cada empaque vincula al lote, productor y análisis de laboratorio. Transparencia total.' },
-            { icon: '🔋', title: 'Densidad nutricional máxima', desc: 'Chía con 34g de fibra por 100g. Quinoa con los 9 aminoácidos esenciales. Proteína >80% en pureza.' },
-            { icon: '🏋️', title: 'Para atletas y profesionales', desc: 'Formulaciones adaptadas para alto rendimiento. Sin rellenos, sin maltodextrina, sin compromisos.' },
-            { icon: '🌱', title: 'Sostenibilidad garantizada', desc: 'Certificados Fair Trade. Los productores andinos reciben precio justo y asistencia técnica directa.' },
-            { icon: '🧪', title: 'Análisis independiente', desc: 'Cada lote pasa por laboratorio acreditado ISO 17025. Metales pesados, pesticidas y microbiología verificados.' },
-          ].map((b, i) => (
-            <div class="benefit-card gsap-reveal" data-delay={i * 0.1}>
-              <div class="benefit-icon">{b.icon}</div>
-              <h3>{b.title}</h3>
-              <p>{b.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad bg-gray-soft" aria-label="Proceso superfoods">
-      <div class="container-xl">
-        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
-          <p class="section-label">El Proceso</p>
-          <h2>Del Ande a tu distribuidora, sin adulteraciones</h2>
-          <div class="divider-gold" style="margin:1rem auto 0;"></div>
-        </div>
-        <div class="process-steps">
-          {[
-            { num: '01', title: 'Cosecha en origen', desc: 'Selección directa con productores andinos certificados. Control de cosecha en alturas superiores a 3500m.' },
-            { num: '02', title: 'Procesamiento mínimo', desc: 'Limpieza y secado sin temperaturas agresivas. Preservamos enzimas activas y nutrientes sensibles al calor.' },
-            { num: '03', title: 'Análisis de laboratorio', desc: 'Acreditado ISO 17025. Pesticidas, metales pesados, microbiología y perfil nutricional completo por lote.' },
-            { num: '04', title: 'Empaque y despacho', desc: 'Packaging al vacío o con gas inerte para máxima vida útil. Despacho directo a tu almacén internacional.' },
-          ].map((step, i) => (
-            <div class="process-step gsap-reveal" data-delay={i * 0.12}>
-              <div class="step-num">{step.num}</div>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTASection />
-    <FAQSection />
-  </main>
-  <Footer />
-</Layout>
-
-<style>
-.cat-hero { padding: calc(72px + 4rem) 0 5rem; }
-.sf-hero { background: linear-gradient(135deg, #1a1a0f 0%, #2b2b1a 50%, #1F3020 100%); }
-.cat-hero-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; }
-.sf-hero h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; margin: 0.5rem 0 1rem; color: white; }
-.sf-hero .section-label { color: var(--gold); }
-.sf-hero .section-label::before { background-color: var(--gold); }
-.sf-hero .cat-hero-desc { font-size: 1.05rem; margin-bottom: 1.5rem; max-width: 440px; color: rgba(255,255,255,0.7); }
-.sf-hero .cat-hero-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.sf-hero .badge-green { background: rgba(107,203,119,0.15); color: var(--verde-light); }
-.cat-hero-photo { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: auto; }
-.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.problem-stats { display: flex; flex-direction: column; gap: 1.25rem; }
-.problem-stat { padding: 1.5rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-md); border-left: 3px solid var(--gold); }
-.pstat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 900; margin-bottom: 0.3rem; }
-.pstat-label { font-family: var(--font-heading); font-size: 0.85rem; color: var(--text-muted); }
-.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.product-card { background: white; border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow var(--transition), border-color var(--transition); }
-.product-card:hover { box-shadow: var(--shadow-lg); }
-.product-image-wrap { aspect-ratio: 4/3; overflow: hidden; background: var(--gray-soft); }
-.product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.product-card:hover .product-img { transform: scale(1.05); }
-.product-body { padding: 1.25rem; }
-.product-name { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
-.product-footer { display: flex; align-items: center; justify-content: space-between; }
-.product-price { display: flex; align-items: baseline; gap: 0.25rem; }
-.price-amount { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; }
-.price-unit { font-size: 0.75rem; color: var(--text-muted); }
-.product-btn { padding: 0.55rem 1.1rem; font-size: 0.82rem; }
-.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.benefit-card { padding: 2rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); transition: border-color var(--transition), box-shadow var(--transition); }
-.benefit-card:hover { border-color: rgba(212,175,55,0.3); box-shadow: var(--shadow-md); }
-.benefit-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-.benefit-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
-.benefit-card p { font-size: 0.88rem; }
-.process-steps { display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; }
-.process-step { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--gray-mid); }
-.process-step:last-child { border-bottom: none; }
-.step-num { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; color: rgba(212,175,55,0.2); line-height: 1; }
-.process-step h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
-.process-step p { font-size: 0.92rem; }
-@media (max-width: 900px) {
-  .cat-hero-inner, .problem-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .products-grid, .benefits-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 560px) { .products-grid, .benefits-grid { grid-template-columns: 1fr; } }
-</style>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-
-  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform' } });
-  heroTl
-    .fromTo('.cat-label',  { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 })
-    .fromTo('.cat-h1',     { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
-    .fromTo('.cat-desc',   { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-    .fromTo('.cat-badges', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
-
-  const isHero = (el: HTMLElement) => !!el.closest('.cat-hero');
-
-  gsap.utils.toArray<HTMLElement>('.gsap-reveal').forEach(el => {
-    if (isHero(el)) return;
-    const delay = parseFloat(el.getAttribute('data-delay') || '0');
-    gsap.fromTo(el, { opacity: 0, y: 28 },
-      { opacity: 1, y: 0, duration: 0.8, delay, ease: 'power3.out', clearProps: 'transform',
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
-  });
-  gsap.utils.toArray<HTMLElement>('.gsap-reveal-right').forEach(el => {
-    gsap.fromTo(el, { opacity: 0, x: 40 },
-      { opacity: 1, x: 0, duration: 1, ease: 'power3.out', clearProps: 'transform',
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
-  });
-  gsap.utils.toArray<HTMLElement>('.gsap-reveal-left').forEach(el => {
-    gsap.fromTo(el, { opacity: 0, x: -40 },
-      { opacity: 1, x: 0, duration: 1, ease: 'power3.out', clearProps: 'transform',
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
-  });
-</script>
+<CategoryPage
+  id="superfoods"
+  seo={{
+    title: 'Superfoods Distribución Internacional — Chía, Quinoa, Proteínas | Nutriva Global',
+    description: 'Superfoods de calidad premium para distribución internacional: proteínas vegetales, semillas de chía, linaza, quinoa real y suplementos naturales. Certificados orgánicos.',
+    keywords: 'superfoods distribución internacional, chía orgánica, quinoa premium, proteína vegetal, semillas orgánicas al por mayor',
+  }}
+  title="Superfoods para distribución internacional"
+  intro="Proteínas vegetales en polvo, semillas de chía, linaza y quinoa real de los Andes. Suplementos naturales con trazabilidad de lote y análisis de laboratorio."
+  chips={['Organic EU', 'Origen andino', 'Non-GMO']}
+  heroAlt="Quinoa, chía, linaza y proteína vegetal Nutriva Global"
+  context={{
+    title: 'Los superfoods del mercado no siempre son lo que prometen',
+    text: 'Una parte importante de los superfoods comercializados tiene adulteraciones, origen no certificado o procesos que destruyen sus propiedades activas. Nutriva Global garantiza trazabilidad completa desde el productor andino hasta tu almacén.',
+    figures: [
+      { num: '60 %', label: 'de los superfoods comerciales son adulterados o no certificados' },
+      { num: '$8B+', label: 'mercado global de superfoods en 2025' },
+      { num: '28 %', label: 'crecimiento anual del segmento de proteínas vegetales' },
+    ],
+  }}
+  catalogue={{
+    title: 'Superfoods de origen certificado',
+    lede: 'Envasado al vacío o con gas inerte para máxima vida útil. Precios de referencia al público.',
+    action: 'Pedir',
+  }}
+  benefits={{
+    title: 'Superfoods certificados, de verdad',
+    items: [
+      { title: 'Origen andino auténtico', desc: 'Quinoa real de altiplanos bolivianos y peruanos a 3800 m.' },
+      { title: 'Trazabilidad completa', desc: 'Código QR en cada empaque vinculado al lote, al productor y al análisis de laboratorio.' },
+      { title: 'Densidad nutricional', desc: 'Chía con 34 g de fibra por 100 g. Quinoa con los 9 aminoácidos esenciales. Proteína de más del 80% de pureza.' },
+      { title: 'Para alto rendimiento', desc: 'Formulaciones sin rellenos ni maltodextrina, pensadas para atletas y profesionales.' },
+      { title: 'Comercio justo', desc: 'Los productores andinos reciben precio justo y asistencia técnica directa.' },
+      { title: 'Análisis independiente', desc: 'Cada lote pasa por un laboratorio acreditado ISO 17025: metales pesados, pesticidas y microbiología.' },
+    ],
+  }}
+  process={{
+    title: 'De los Andes a tu distribuidora, sin adulteraciones',
+    steps: [
+      { title: 'Cosecha en origen', desc: 'Selección directa con productores andinos certificados, a más de 3500 m de altura.' },
+      { title: 'Procesamiento mínimo', desc: 'Limpieza y secado sin temperaturas agresivas, para preservar los nutrientes sensibles al calor.' },
+      { title: 'Análisis de laboratorio', desc: 'Pesticidas, metales pesados, microbiología y perfil nutricional completo por lote.' },
+      { title: 'Empaque y despacho', desc: 'Envasado al vacío o con gas inerte y despacho directo a tu almacén internacional.' },
+    ],
+  }}
+/>

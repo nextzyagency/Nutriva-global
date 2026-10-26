@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import LoadingScreen from '../components/ui/LoadingScreen.astro';
 
 export interface Props {
   title: string;
@@ -18,7 +17,7 @@ const {
   keywords = 'alimentos saludables globales, snacks orgánicos premium, superfoods distribución internacional'
 } = Astro.props;
 
-const fullTitle = title.length > 60 ? title : `${title} | Nutriva Global`;
+const fullTitle = title.length > 60 || title.includes('Nutriva Global') ? title : `${title} | Nutriva Global`;
 
 // Schema.org en frontmatter para evitar conflicto con el parser de Astro
 const schemaOrg = JSON.stringify({
@@ -81,12 +80,18 @@ const schemaOrg = JSON.stringify({
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json" set:html={schemaOrg} />
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" />
+    <meta name="theme-color" content="#14342B" />
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
-    <LoadingScreen />
+    <a class="skip-link" href="#main-content">Saltar al contenido</a>
     <slot />
   </body>
 </html>

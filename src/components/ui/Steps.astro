@@ -1,0 +1,58 @@
+---
+interface Step { title: string; desc: string }
+interface Props { steps: Step[]; label: string }
+const { steps, label } = Astro.props;
+---
+
+<ol class="steps" aria-label={label} style={`--n:${steps.length}`}>
+  {steps.map((s, i) => (
+    <li class="step">
+      <span class="step-num" aria-hidden="true">{i + 1}</span>
+      <h3 class="step-title">{s.title}</h3>
+      <p class="step-desc">{s.desc}</p>
+    </li>
+  ))}
+</ol>
+
+<style>
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+  gap: 0 clamp(1rem, 2vw, 1.75rem);
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  padding-top: 1.75rem;
+  border-top: 2px solid var(--ink);
+}
+
+.step-num {
+  position: absolute;
+  top: -1.05rem;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.875rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+:global(.section--oat) .step-num { box-shadow: 0 0 0 6px var(--oat); }
+:global(.section:not(.section--oat)) .step-num { box-shadow: 0 0 0 6px var(--paper); }
+
+.step-title { font-size: 1.25rem; margin-bottom: 0.5rem; }
+.step-desc { color: var(--ink-soft); font-size: 0.975rem; }
+
+@media (max-width: 960px) {
+  .steps { grid-template-columns: 1fr; gap: 2.25rem; }
+}
+</style>

@@ -1,151 +1,69 @@
 ---
-// CTASection.astro
+import { contact } from '../../data/site';
+
+const terms = [
+  'Mínimos de pedido flexibles',
+  'Precios especiales para distribuidores',
+  'Soporte logístico internacional',
+  'Documentación de origen y análisis en cada pedido',
+  'Private label disponible',
+];
 ---
 
-<section class="cta-section" id="cta-mayoristas" aria-label="Llamada a la acción">
-  <div class="container-xl cta-inner">
-
-    <div class="cta-content gsap-reveal">
-      <div class="section-label" style="color: rgba(255,255,255,0.7);">
-        <span style="background:rgba(212,175,55,0.5); width:24px; height:2px; display:inline-block; border-radius:2px;"></span>
-        Únete a la red global
-      </div>
-      <h2 class="cta-title">
-        ¿Listo para llevar alimentos<br/>
-        <span style="color: var(--gold);">saludables a tu mercado?</span>
-      </h2>
-      <p class="cta-subtitle">
-        Sea para consumo personal o distribución mayorista, tenemos una solución diseñada para ti. Más de 20 países ya confían en Nutriva Global.
-      </p>
+<section class="section section--band" id="mayoristas-cta" aria-labelledby="cta-title">
+  <div class="wrap cta-grid">
+    <div>
+      <h2 id="cta-title">¿Llevamos Nutriva a tu mercado?</h2>
+      <p class="cta-lede">Cuéntanos dónde distribuyes y qué volúmenes manejas. Te enviamos la propuesta comercial y las fichas técnicas en menos de 24 horas hábiles.</p>
       <div class="cta-actions">
-        <a
-          href="/contacto"
-          title="Contactar a Nutriva Global para distribución"
-          class="btn-gold"
-          id="cta-contact-btn"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          Hablar con un asesor
+        <a href="/contacto#propuesta" class="btn btn--light">
+          Solicitar propuesta
+          <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a
-          href="https://wa.me/31201234567?text=Hola%20Nutriva%20Global%2C%20me%20interesa%20conocer%20sus%20productos."
-          title="WhatsApp Nutriva Global"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-outline-white"
-          id="cta-whatsapp-btn"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          WhatsApp directo
+        <a href={contact.whatsappWithText} target="_blank" rel="noopener noreferrer" class="btn btn--ghost-light">
+          Hablar por WhatsApp
         </a>
       </div>
     </div>
 
-    <div class="cta-features gsap-reveal-right">
-      {[
-        { icon: 'check', text: 'Mínimos de pedido flexibles' },
-        { icon: 'check', text: 'Precios especiales para distribuidores' },
-        { icon: 'check', text: 'Soporte logístico internacional' },
-        { icon: 'check', text: 'Certificaciones incluidas en cada pedido' },
-        { icon: 'check', text: 'Respuesta en menos de 24 horas' },
-      ].map(f => (
-        <div class="cta-feature">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="cta-feature-icon"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>{f.text}</span>
-        </div>
+    <ul class="terms" role="list" aria-label="Condiciones para distribuidores">
+      {terms.map((t) => (
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          {t}
+        </li>
       ))}
-    </div>
-
+    </ul>
   </div>
 </section>
 
 <style>
-.cta-section {
-  background: linear-gradient(135deg, var(--verde-deep) 0%, #164d3d 60%, #0f3329 100%);
-  padding: clamp(4rem, 8vw, 7rem) 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-section::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 60vw;
-  height: 60vw;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 60%);
-  pointer-events: none;
-}
-
-.cta-inner {
+.cta-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2.5rem, 6vw, 6rem);
   align-items: center;
-  gap: 5rem;
 }
+.cta-grid h2 { font-size: clamp(2.25rem, 4.6vw, 4rem); font-weight: 800; max-width: 11em; }
+.cta-lede { margin-top: 1.25rem; color: var(--band-soft); font-size: 1.125rem; max-width: 32em; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
 
-.cta-content {
-  color: white;
-}
-
-.cta-title {
-  color: white;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  line-height: 1.2;
-  margin: 0.75rem 0 1rem;
-  font-weight: 900;
-}
-
-.cta-subtitle {
-  color: rgba(255,255,255,0.7);
-  line-height: 1.75;
-  margin-bottom: 2.5rem;
-  font-size: 1rem;
-}
-
-.cta-actions {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.cta-features {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
-
-.cta-feature {
+.terms { list-style: none; padding: 0; margin: 0; }
+.terms li {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 1rem 1.25rem;
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: var(--radius-md);
-  font-family: var(--font-heading);
-  font-size: 0.92rem;
+  gap: 0.875rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--band-line);
+  font-size: 1.0625rem;
   font-weight: 500;
-  color: white;
-  transition: all var(--transition);
 }
+.terms li:first-child { border-top: 1px solid var(--band-line); }
+.terms svg { color: var(--field-sage); flex-shrink: 0; }
 
-.cta-feature:hover {
-  background: rgba(255,255,255,0.12);
-  transform: translateX(4px);
-}
-
-.cta-feature-icon {
-  color: var(--gold);
-  flex-shrink: 0;
-}
+.section--band :global(:focus-visible) { outline-color: var(--field-sage); }
 
 @media (max-width: 860px) {
-  .cta-inner {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
+  .cta-grid { grid-template-columns: 1fr; }
 }
 </style>

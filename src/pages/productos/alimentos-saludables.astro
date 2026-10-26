@@ -1,239 +1,50 @@
 ---
-import { Image } from 'astro:assets';
-import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
-import Footer from '../../components/sections/Footer.astro';
-import CTASection from '../../components/sections/CTASection.astro';
-import FAQSection from '../../components/sections/FAQSection.astro';
-import products from '../../data/products.json';
-import categoryImg from '../../assets/category_alimentos.png';
-import productSnack from '../../assets/product_snack.png';
-import productBarra from '../../assets/product_barra.png';
-import productGranola from '../../assets/product_granola.png';
-
-const category = products.categories.find(c => c.id === 'alimentos-saludables')!;
-const productImages: Record<string, ImageMetadata> = {
-  product_snack: productSnack,
-  product_barra: productBarra,
-  product_granola: productGranola,
-  category_alimentos: categoryImg,
-};
+import CategoryPage from '../../components/CategoryPage.astro';
 ---
 
-<Layout
-  title="Snacks Orgánicos Premium y Alimentos Saludables | Nutriva Global"
-  description="Descubre nuestra línea de snacks orgánicos premium, barras proteicas y granolas artesanales. Certificados EU Organic, sin gluten. Envío internacional disponible."
-  keywords="snacks orgánicos premium, barras proteicas plant-based, granola artesanal orgánica, alimentos saludables certificados"
->
-  <Header />
-  <main id="main-content">
-
-    <section class="cat-hero" aria-label="Alimentos Saludables">
-      <div class="container-xl cat-hero-inner">
-        <div class="cat-hero-content">
-          <p class="section-label cat-label">Línea de Productos</p>
-          <h1 class="cat-h1">Snacks Orgánicos<br/><span class="text-gradient">Premium</span></h1>
-          <p class="cat-hero-desc cat-desc">Alimentos saludables con ingredientes 100% orgánicos certificados. Sin conservantes, sin azúcar refinada. Nutrición real para tu día a día.</p>
-          <div class="cat-hero-badges cat-badges">
-            <span class="badge badge-green">EU Organic</span>
-            <span class="badge badge-green">Sin Gluten</span>
-            <span class="badge badge-gold">Non-GMO</span>
-          </div>
-        </div>
-        <div class="gsap-reveal-right">
-          <Image src={categoryImg} alt="Snacks orgánicos premium Nutriva Global" width={580} height={400} loading="eager" class="cat-hero-photo" />
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" aria-label="El problema de los snacks procesados">
-      <div class="container-xl problem-grid">
-        <div class="gsap-reveal-left">
-          <p class="section-label">El Problema</p>
-          <h2>Los snacks del mercado no te nutren</h2>
-          <div class="divider-gold"></div>
-          <p>El 73% de los snacks contienen azúcares ocultos, conservantes artificiales y ultraprocesados que deterioran la salud. El consumidor consciente exige transparencia y certificaciones verificables.</p>
-        </div>
-        <div class="problem-stats gsap-reveal-right">
-          {[
-            { num: '73%', label: 'de snacks contienen azúcares ocultos' },
-            { num: '4x', label: 'mayor demanda de productos orgánicos en 5 años' },
-            { num: '89%', label: 'de consumidores lee etiquetas antes de comprar' },
-          ].map(s => (
-            <div class="problem-stat">
-              <div class="pstat-num text-gradient">{s.num}</div>
-              <div class="pstat-label">{s.label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad bg-gray-soft" id="productos" aria-label="Catálogo de alimentos saludables">
-      <div class="container-xl">
-        <div class="gsap-reveal" style="text-align:center; margin-bottom:3rem;">
-          <p class="section-label">Nuestros Productos</p>
-          <h2>Alimentos que sí te nutren</h2>
-          <div class="divider-gold" style="margin:1rem auto 0;"></div>
-        </div>
-        <div class="products-grid">
-          {category.products.map((p, i) => (
-            <div class="product-card gsap-reveal" data-delay={i * 0.12}>
-              <div class="product-image-wrap">
-                <Image src={productImages[p.image] ?? categoryImg} alt={p.alt} width={400} height={300} loading="lazy" class="product-img" />
-              </div>
-              <div class="product-body">
-                <h3 class="product-name">{p.name}</h3>
-                <div class="product-footer">
-                  <div class="product-price">
-                    <span class="price-amount">{p.price}</span>
-                    <span class="price-unit">/ {p.unit}</span>
-                  </div>
-                  <a href="/contacto" title={`Pedir ${p.name}`} class="btn-primary product-btn">Pedir</a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad" aria-label="Beneficios alimentos saludables">
-      <div class="container-xl">
-        <div class="gsap-reveal" style="text-align:center; margin-bottom:3.5rem;">
-          <p class="section-label">Beneficios</p>
-          <h2>Lo que cambia cuando eliges lo orgánico</h2>
-          <div class="divider-gold" style="margin:1rem auto 0;"></div>
-        </div>
-        <div class="benefits-grid">
-          {[
-            { icon: '🌱', title: 'Energía sostenida', desc: 'Sin picos de azúcar. Combustible limpio con carbohidratos complejos y proteínas reales.' },
-            { icon: '🛡️', title: 'Transparencia total', desc: 'Cada ingrediente certificado y trazado. Sabes exactamente qué estás comiendo.' },
-            { icon: '💪', title: 'Rendimiento real', desc: 'Formulados para deportistas y profesionales activos. Sin rellenos ni compromisos.' },
-            { icon: '🌍', title: 'Impacto positivo', desc: 'Cada compra apoya prácticas agrícolas sostenibles y comercio justo con productores.' },
-            { icon: '✅', title: 'Certificado', desc: 'EU Organic, Non-GMO, Vegan Society. Las certificaciones más exigentes del mercado.' },
-            { icon: '📦', title: 'Packaging sostenible', desc: 'Empaques biodegradables. El compromiso con el planeta no termina en el ingrediente.' },
-          ].map((b, i) => (
-            <div class="benefit-card gsap-reveal" data-delay={i * 0.1}>
-              <div class="benefit-icon">{b.icon}</div>
-              <h3>{b.title}</h3>
-              <p>{b.desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section class="section-pad bg-gray-soft" aria-label="Proceso de producción">
-      <div class="container-xl">
-        <div class="gsap-reveal" style="text-align:center; margin-bottom:3.5rem;">
-          <p class="section-label">El Proceso</p>
-          <h2>Del campo a tu mesa, sin intermediarios</h2>
-          <div class="divider-gold" style="margin:1rem auto 0;"></div>
-        </div>
-        <div class="process-steps">
-          {[
-            { num: '01', title: 'Selección de ingredientes', desc: 'Productores certificados en Europa, LATAM y Asia. Ingredientes orgánicos trazados desde el origen.' },
-            { num: '02', title: 'Producción controlada', desc: 'Plantas con certificación ISO 22000 y HACCP. Control de calidad en cada lote de producción.' },
-            { num: '03', title: 'Certificación y análisis', desc: 'Laboratorios independientes verifican cada producto antes de ser empacado. Cero compromisos.' },
-            { num: '04', title: 'Distribución global', desc: 'Logística directa a +20 países con cadena de temperatura controlada donde se requiere.' },
-          ].map((step, i) => (
-            <div class="process-step gsap-reveal" data-delay={i * 0.12}>
-              <div class="step-num">{step.num}</div>
-              <div>
-                <h3>{step.title}</h3>
-                <p>{step.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <CTASection />
-    <FAQSection />
-  </main>
-  <Footer />
-</Layout>
-
-<style>
-.cat-hero { background: linear-gradient(135deg, #f9fbf9 0%, var(--beige) 100%); padding: calc(72px + 4rem) 0 5rem; }
-.cat-hero-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 4rem; }
-.cat-hero-content h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 900; margin: 0.5rem 0 1rem; }
-.cat-hero-desc { font-size: 1.05rem; margin-bottom: 1.5rem; max-width: 440px; }
-.cat-hero-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-.cat-hero-photo { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; height: auto; }
-.problem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
-.problem-stats { display: flex; flex-direction: column; gap: 1.25rem; }
-.problem-stat { padding: 1.5rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-md); border-left: 3px solid var(--verde-deep); }
-.pstat-num { font-family: var(--font-heading); font-size: 2rem; font-weight: 900; line-height: 1; margin-bottom: 0.3rem; }
-.pstat-label { font-family: var(--font-heading); font-size: 0.85rem; color: var(--text-muted); }
-.products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.product-card { background: white; border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); overflow: hidden; transition: box-shadow var(--transition), border-color var(--transition); }
-.product-card:hover { border-color: rgba(31,122,99,0.25); box-shadow: var(--shadow-lg); }
-.product-image-wrap { aspect-ratio: 4/3; overflow: hidden; background: var(--gray-soft); }
-.product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-.product-card:hover .product-img { transform: scale(1.05); }
-.product-body { padding: 1.25rem; }
-.product-name { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
-.product-footer { display: flex; align-items: center; justify-content: space-between; }
-.product-price { display: flex; align-items: baseline; gap: 0.25rem; }
-.price-amount { font-family: var(--font-heading); font-size: 1.3rem; font-weight: 800; }
-.price-unit { font-size: 0.75rem; color: var(--text-muted); }
-.product-btn { padding: 0.55rem 1.1rem; font-size: 0.82rem; }
-.benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.benefit-card { padding: 2rem; background: var(--gray-soft); border: 1px solid var(--gray-mid); border-radius: var(--radius-lg); transition: border-color var(--transition), box-shadow var(--transition); }
-.benefit-card:hover { border-color: rgba(31,122,99,0.25); box-shadow: var(--shadow-md); }
-.benefit-icon { font-size: 2rem; margin-bottom: 0.75rem; }
-.benefit-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
-.benefit-card p { font-size: 0.88rem; }
-.process-steps { display: flex; flex-direction: column; max-width: 800px; margin: 0 auto; }
-.process-step { display: grid; grid-template-columns: 80px 1fr; gap: 2rem; padding: 2rem 0; border-bottom: 1px solid var(--gray-mid); align-items: start; }
-.process-step:last-child { border-bottom: none; }
-.step-num { font-family: var(--font-heading); font-size: 2.5rem; font-weight: 900; color: rgba(31,122,99,0.15); line-height: 1; }
-.process-step h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
-.process-step p { font-size: 0.92rem; }
-@media (max-width: 900px) {
-  .cat-hero-inner, .problem-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .products-grid, .benefits-grid { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 560px) {
-  .products-grid, .benefits-grid { grid-template-columns: 1fr; }
-  .process-step { grid-template-columns: 60px 1fr; }
-}
-</style>
-
-<script>
-  import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Hero intro — elements use unique classes to avoid class/ID conflicts
-  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', clearProps: 'transform' } });
-  heroTl
-    .fromTo('.cat-label',  { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 })
-    .fromTo('.cat-h1',     { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
-    .fromTo('.cat-desc',   { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-    .fromTo('.cat-badges', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 }, '-=0.3');
-
-  // Generic reveals — skip hero section elements
-  const isHero = (el: HTMLElement) => !!el.closest('.cat-hero');
-
-  gsap.utils.toArray<HTMLElement>('.gsap-reveal').forEach(el => {
-    if (isHero(el)) return;
-    const delay = parseFloat(el.getAttribute('data-delay') || '0');
-    gsap.fromTo(el, { opacity: 0, y: 28 },
-      { opacity: 1, y: 0, duration: 0.8, delay, ease: 'power3.out', clearProps: 'transform',
-        scrollTrigger: { trigger: el, start: 'top 88%', once: true } });
-  });
-  gsap.utils.toArray<HTMLElement>('.gsap-reveal-right').forEach(el => {
-    gsap.fromTo(el, { opacity: 0, x: 40 },
-      { opacity: 1, x: 0, duration: 1, ease: 'power3.out', clearProps: 'transform',
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
-  });
-  gsap.utils.toArray<HTMLElement>('.gsap-reveal-left').forEach(el => {
-    gsap.fromTo(el, { opacity: 0, x: -40 },
-      { opacity: 1, x: 0, duration: 1, ease: 'power3.out', clearProps: 'transform',
-        scrollTrigger: { trigger: el, start: 'top 85%', once: true } });
-  });
-</script>
+<CategoryPage
+  id="alimentos-saludables"
+  seo={{
+    title: 'Snacks Orgánicos Premium y Alimentos Saludables | Nutriva Global',
+    description: 'Descubre nuestra línea de snacks orgánicos premium, barras proteicas y granolas artesanales. Certificados EU Organic, sin gluten. Envío internacional disponible.',
+    keywords: 'snacks orgánicos premium, barras proteicas plant-based, granola artesanal orgánica, alimentos saludables certificados',
+  }}
+  title="Snacks orgánicos premium"
+  intro="Alimentos saludables con ingredientes 100% orgánicos certificados. Sin conservantes, sin azúcar refinada. Nutrición real para el día a día de tus clientes."
+  chips={['EU Organic', 'Sin gluten', 'Non-GMO']}
+  heroAlt="Snacks orgánicos, barras y granola Nutriva Global"
+  context={{
+    title: 'Los snacks del mercado no nutren',
+    text: 'La mayoría de los snacks contienen azúcares ocultos, conservantes artificiales y ultraprocesados. El consumidor consciente exige transparencia y certificaciones verificables, y busca en el lineal productos que se las den.',
+    figures: [
+      { num: '73 %', label: 'de los snacks contienen azúcares ocultos' },
+      { num: '4×', label: 'más demanda de productos orgánicos en 5 años' },
+      { num: '89 %', label: 'de los consumidores lee la etiqueta antes de comprar' },
+    ],
+  }}
+  catalogue={{
+    title: 'Alimentos que sí nutren',
+    lede: 'Formatos listos para lineal. Precios de referencia al público; las condiciones mayoristas van en tu propuesta.',
+    action: 'Pedir',
+  }}
+  benefits={{
+    title: 'Lo que cambia cuando eliges lo orgánico',
+    items: [
+      { title: 'Energía sostenida', desc: 'Sin picos de azúcar. Carbohidratos complejos y proteínas reales.' },
+      { title: 'Transparencia total', desc: 'Cada ingrediente certificado y trazado. Se sabe exactamente qué se come.' },
+      { title: 'Rendimiento real', desc: 'Formulados para deportistas y profesionales activos. Sin rellenos ni compromisos.' },
+      { title: 'Impacto positivo', desc: 'Cada compra apoya prácticas agrícolas sostenibles y comercio justo con productores.' },
+      { title: 'Certificado', desc: 'EU Organic, Non-GMO y Vegan Society, las certificaciones más exigentes del mercado.' },
+      { title: 'Packaging sostenible', desc: 'Empaques biodegradables: el compromiso con el planeta no termina en el ingrediente.' },
+    ],
+  }}
+  process={{
+    title: 'Del campo a tu lineal, sin intermediarios',
+    steps: [
+      { title: 'Selección de ingredientes', desc: 'Productores certificados en Europa, LATAM y Asia. Ingredientes orgánicos trazados desde el origen.' },
+      { title: 'Producción controlada', desc: 'Plantas con certificación ISO 22000 y HACCP. Control de calidad en cada lote.' },
+      { title: 'Certificación y análisis', desc: 'Laboratorios independientes verifican cada producto antes de empacarlo.' },
+      { title: 'Distribución global', desc: 'Logística directa a más de 20 países, con temperatura controlada donde se requiere.' },
+    ],
+  }}
+/>

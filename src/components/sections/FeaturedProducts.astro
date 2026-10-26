@@ -1,256 +1,116 @@
 ---
 import { Image } from 'astro:assets';
 import products from '../../data/products.json';
-import productSnack from '../../assets/product_snack.png';
-import productBarra from '../../assets/product_barra.png';
-import productGranola from '../../assets/product_granola.png';
+import { images, lineById } from '../../data/site';
 
 const featured = products.featured;
-
-const imageMap: Record<string, ImageMetadata> = {
-  product_snack: productSnack,
-  product_barra: productBarra,
-  product_granola: productGranola,
-};
 ---
 
-<section class="featured-products section-pad" id="productos-destacados" aria-label="Productos más vendidos">
-  <div class="container-xl">
-
-    <div class="fp-header gsap-reveal">
-      <p class="section-label">Más Vendidos</p>
-      <h2>Los favoritos de nuestros clientes</h2>
-      <p class="fp-subtitle">Productos seleccionados por su calidad, sabor y beneficios comprobados. Orgánicos, plant-based y listos para ser parte de tu rutina.</p>
-      <div class="divider-gold"></div>
+<section class="section" id="productos-destacados" aria-labelledby="fp-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="fp-title">Los más pedidos por nuestros distribuidores</h2>
+      <p class="lede">Productos con rotación probada, listos para lineal. Pide muestras con tu propuesta.</p>
     </div>
 
-    <div class="products-grid">
-      {featured.map((product, i) => (
-        <article class={`product-card gsap-reveal`} data-delay={i * 0.15} aria-label={`Producto: ${product.name}`}>
-          <div class="product-image-wrap">
-            <span class={`product-badge ${product.badge === 'Más Vendido' ? 'badge-green' : product.badge === 'Nuevo' ? 'badge-gold' : 'badge-green'} badge`}>
-              {product.badge}
-            </span>
-            <Image
-              src={imageMap[product.image]}
-              alt={product.alt}
-              width={400}
-              height={300}
-              loading="lazy"
-              class="product-img"
-            />
-          </div>
-          <div class="product-body">
-            <div class="product-meta">
-              <span class="product-category">{product.category}</span>
+    <ul class="products" role="list">
+      {featured.map((product) => {
+        const line = lineById(product.categorySlug);
+        return (
+          <li class="product" style={`--field:${line.field}`}>
+            <div class="product-media">
+              <Image src={images[product.image]} alt={product.alt} widths={[360, 540, 720]} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 400px" loading="lazy" class="product-img" />
+              <span class={`product-tag ${product.badge === 'Nuevo' ? 'product-tag--new' : ''}`}>{product.badge}</span>
             </div>
-            <h3 class="product-name">{product.name}</h3>
-            <p class="product-desc">{product.description}</p>
-            <ul class="product-benefits" role="list">
-              {product.benefits.map(benefit => (
-                <li class="product-benefit">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-                  {benefit}
-                </li>
-              ))}
-            </ul>
-            <div class="product-footer">
-              <div class="product-price">
-                <span class="price-amount">{product.price}</span>
-                <span class="price-unit">/ {product.unit}</span>
+            <div class="product-body">
+              <h3 class="product-name">{product.name}</h3>
+              <p class="product-desc">{product.description}</p>
+              <ul class="product-benefits" role="list">
+                {product.benefits.map((b) => <li class="chip">{b}</li>)}
+              </ul>
+              <div class="product-foot">
+                <p class="product-price"><strong>{product.price}</strong> <span>/ {product.unit} · PVP ref.</span></p>
+                <a href={`/productos/${product.categorySlug}`} class="link-arrow" aria-label={`Ver ${product.name}`}>
+                  Ver ficha
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
               </div>
-              <a
-                href={`/productos/${product.categorySlug}`}
-                title={`Ver ${product.name} - Nutriva Global`}
-                class="btn-primary product-btn"
-              >
-                Ver más
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
             </div>
-          </div>
-        </article>
-      ))}
-    </div>
-
-    <div class="fp-cta gsap-reveal">
-      <a href="/productos/alimentos-saludables" title="Ver catálogo completo de alimentos saludables" class="btn-outline" id="fp-ver-todos">
-        Ver catálogo completo
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-
+          </li>
+        );
+      })}
+    </ul>
   </div>
 </section>
 
 <style>
-.featured-products {
-  background: var(--white);
-}
-
-.fp-header {
-  text-align: center;
-  margin-bottom: 3.5rem;
-}
-
-.fp-header h2 {
-  margin-bottom: 0.75rem;
-}
-
-.fp-subtitle {
-  max-width: 540px;
-  margin: 0 auto;
-  font-size: 1rem;
-}
-
-.fp-header .divider-gold {
-  margin: 1.25rem auto 0;
-}
-
-.products-grid {
+.products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-  margin-bottom: 3rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
-.product-card {
-  background: white;
-  border: 1px solid var(--gray-mid);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: all var(--transition);
-}
+.product { display: flex; flex-direction: column; }
 
-.product-card:hover {
-  border-color: rgba(31,122,99,0.25);
-  box-shadow: var(--shadow-lg);
-  transform: translateY(-6px);
-}
-
-.product-image-wrap {
+.product-media {
   position: relative;
-  background: var(--gray-soft);
-  aspect-ratio: 4/3;
+  aspect-ratio: 1;
+  border-radius: var(--radius-img);
   overflow: hidden;
+  background: var(--field);
 }
-
 .product-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 700ms var(--ease-out);
 }
+.product:hover .product-img { transform: scale(1.035); }
 
-.product-card:hover .product-img {
-  transform: scale(1.04);
-}
-
-.product-badge {
+.product-tag {
   position: absolute;
   top: 1rem;
   left: 1rem;
-  z-index: 2;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--radius-ctl);
+  background: var(--paper);
+  font-size: 0.8125rem;
+  font-weight: 700;
 }
+.product-tag--new { background: var(--ink); color: var(--paper); }
 
 .product-body {
-  padding: 1.5rem;
-}
-
-.product-meta {
-  margin-bottom: 0.5rem;
-}
-
-.product-category {
-  font-family: var(--font-heading);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--verde-deep);
-}
-
-.product-name {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--carbon);
-  margin-bottom: 0.5rem;
-  line-height: 1.3;
-}
-
-.product-desc {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.product-benefits {
-  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
-  margin-bottom: 1.25rem;
+  gap: 0.75rem;
+  flex: 1;
+  padding-top: 1.25rem;
 }
+.product-name { font-size: 1.5rem; }
+.product-desc { color: var(--ink-soft); font-size: 1rem; }
+.product-benefits { display: flex; flex-wrap: wrap; gap: 0.4rem; list-style: none; padding: 0; margin: 0; }
 
-.product-benefit {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-family: var(--font-heading);
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--verde-deep);
-}
-
-.product-benefit svg { color: var(--verde-light); flex-shrink: 0; }
-
-.product-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 1rem;
-  border-top: 1px solid var(--gray-mid);
-}
-
-.product-price {
+.product-foot {
   display: flex;
   align-items: baseline;
-  gap: 0.25rem;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+.product-price { font-variant-numeric: tabular-nums; color: var(--ink-faint); font-size: 0.875rem; }
+.product-price strong {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
 }
 
-.price-amount {
-  font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--carbon);
-}
-
-.price-unit {
-  font-family: var(--font-body);
-  font-size: 0.78rem;
-  color: var(--text-muted);
-}
-
-.product-btn {
-  padding: 0.6rem 1.2rem;
-  font-size: 0.85rem;
-}
-
-.fp-cta {
-  display: flex;
-  justify-content: center;
-}
-
-@media (max-width: 900px) {
-  .products-grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 560px) {
-  .products-grid { grid-template-columns: 1fr; }
-}
+@media (max-width: 1100px) { .products { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 700px)  { .products { grid-template-columns: 1fr; } }
 </style>
